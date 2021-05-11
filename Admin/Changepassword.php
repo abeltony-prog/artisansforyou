@@ -43,7 +43,7 @@
         $adminid = DB::query('SELECT * FROM admin_user');
         foreach ($adminid as $admin) {
           $newPass = $_POST['newPass'];
-              DB::query('UPDATE password=:newPass FROM admin_user WHERE admin_id=:adminid', array(':newPass'=>$newPass,':adminid'=>$admin['id']));
+              DB::query('UPDATE admin_user SET password=:newPass WHERE id=:adminid', array(':newPass'=>password_hash($newPass, PASSWORD_BCRYPT),':adminid'=>$admin['id']));
               echo "<script>window.open('index.php', '_self')</script>";
         }
     }

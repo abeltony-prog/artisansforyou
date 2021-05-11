@@ -71,7 +71,7 @@ if (Login::isLoggedIn()) {
   <div class="container">
     <nav class="navbar navbar-expand-lg stroke">
       <h1><a class="navbar-brand mr-lg-5" href="index.php">
-          KAM
+          Artisans For You
         </a></h1>
       <!-- if logo is image enable this
     <a class="navbar-brand" href="#index.php">

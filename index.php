@@ -135,7 +135,7 @@
   </section>
   <!-- //stats -->
   <!--/-->
-  <div id="myblog" class="best-rooms py-5">
+  <!--<div id="myblog" class="best-rooms py-5">
     <div class="container py-md-5">
       <div class="title-content text-left mb-lg-5 mb-4">
         <h6 class="sub-title">Visit</h6>
@@ -147,7 +147,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
   <!-- //stats -->
   <!-- testimonials -->
   <section class="w3l-clients" id="clients">
@@ -287,21 +287,18 @@
           </div>
           <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
             <div class="columns text-lg-left text-center">
-              <p>&copy; 2021 KAM. All rights reserved.Design by <a href="" target="_blank">
+              <p>&copy; 2021 KAM. All rights reserved.Developed by <a href="https://umbrellagrp.rw/" target="_blank">
+                Umbrella
                 </a>
               </p>
             </div>
             <div class="columns-2 mt-lg-0 mt-3">
               <ul class="social">
-                <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                <li><a href="https://www.linkedin.com/company/umbrella-innovators/"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
                 </li>
-                <li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                <li><a href="#twitter"><span class="fa fa-instagram" aria-hidden="true"></span></a>
                 </li>
-                <li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-                </li>
-                <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
-                </li>
-                <li><a href="#github"><span class="fa fa-github" aria-hidden="true"></span></a>
+                <li><a href="https://github.com/Umbrella-Devs"><span class="fa fa-github" aria-hidden="true"></span></a>
                 </li>
               </ul>
             </div>

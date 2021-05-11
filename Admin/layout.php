@@ -68,6 +68,21 @@
                 <form class="" action="" method="post">
                   <button class="btn btn-danger" type="submit" name="logout"><i class="fa fa-sign-out"></i> Log Out</button>
                 </form>
+                <?php
+if (!Login::isLoggedIn()) {
+  die("<script>window.open('login.php', '_self')</script>");
+}
+if (isset($_POST['logout'])) {
+    DB::query('DELETE FROM admin_logins WHERE admin_id =:id', array(':id'=>Login::isLoggedIn()));
+      echo "<script>window.open('login.php', '_self')</script>";
+    if (isset($_COOKIE['SNID'])) {
+    DB::query('DELETE FROM admin_logins WHERE token =:token', array(':token'=>sha1($_COOKIE['SNID'])));
+        echo "<script>window.open('login.php', '_self')</script>";
+    }
+    setcookie('SNID', '1' , time()-3600);
+    setcookie('SNID_', '1' , time()-3600);
+}
+ ?>
               </li>
             </ul>
           </li>

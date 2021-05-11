@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>KAM | Dashboard</title>
+  <title>Dashboard | Artisans For You</title>
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -53,11 +53,26 @@
               <a class="nav-link" href="ArtisanProfile.php">My Profile</a>
             </li>
           </ul>
-          <span style="margin-right: 10%;"><strong><?php echo $artisan['name'] ?></strong> </span> 
+          <span style="margin-right: 10%;"><strong><?php echo $artisan['name'] ?></strong> </span>
         </div>
-        <div class="d-lg-block d-none">
-          <a href="#" class="btn btn-secondary"><span><i class="fa fa-sign-out"></i>Logout</span></a>
-        </div>
+          <form class="d-lg-block d-none" action="" method="post">
+            <button class="btn btn-secondary" type="submit" name="logout"><span><i class="fa fa-sign-out"></i>Logout</span></button>
+          </form>
+          <?php
+if (!Login::isLoggedIn()) {
+die("<script>window.open('ArtisanLogin.php', '_self')</script>");
+}
+if (isset($_POST['logout'])) {
+DB::query('DELETE FROM artisan_login WHERE artisan_id =:id', array(':id'=>Login::isLoggedIn()));
+echo "<script>window.open('ArtisanLogin.php', '_self')</script>";
+if (isset($_COOKIE['SNID'])) {
+DB::query('DELETE FROM artisan_login WHERE tokens =:token', array(':token'=>sha1($_COOKIE['SNID'])));
+  echo "<script>window.open('ArtisanLogin.php', '_self')</script>";
+}
+setcookie('SNID', '1' , time()-3600);
+setcookie('SNID_', '1' , time()-3600);
+}
+?>
         <!-- toggle switch for light and dark theme -->
         <div class="mobile-position">
           <nav class="navigation">
@@ -81,26 +96,34 @@
   <!-- //about breadcrumb -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container">
-  <div class="row">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Client Name</th>
-            <th scope="col">Message</th>
-            <th scope="col">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-
+    <?php
+      if (!DB::query('SELECT * FROM id WHERE artisan_id=:artisanid', array(':artisanid'=>$artisan['id']))) {
+        echo "<script>window.open('AttachID.php', '_self')</script>";
+      }else {
+        ?>
+        <div class="row">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Notification</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>You have a new message</b> </td>
+                  <td>From <a style="color: blue;" href="#"><u>Mark</u> </a> </td>
+                  <td><small><span>Dec 12th 2021 12:30</span> </small> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        <?php
+      }
+     ?>
+  </div>
   <!-- Template JavaScript -->
   <script src="assets/js/jquery-3.3.1.min.js"></script>
   <script src="assets/js/theme-change.js"></script>
