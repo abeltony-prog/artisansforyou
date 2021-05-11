@@ -56,14 +56,14 @@ div.content {
               <div class="content">
                 <h3>Attach Your National Id or Passport</h3>
                 <hr />
-                <form class="" action="" method="post">
+                <form class="" action="" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nationality</label>
                     <input type="text" name="nationality" class="form-control" id="exampleInput" placeholder="Nationality" required>
                   </div>
                   <div class="form-group mt-2">
                     <label for="exampleInputPassword1">Attach ID Photocopy</label>
-                    <input type="file" name="image" class="form-control" id="exampleInput" required>
+                    <input type="file" name="file" class="form-control" id="exampleInput" required>
                   </div>
                   <div class="form-group mt-2">
                     I agree to all term<input type="checkbox" name="" value="" required>
@@ -75,11 +75,11 @@ div.content {
                 if (isset($_POST['conferm'])) {
                   $artisan_id = $artisan['id'];
                   $nationality = $_POST['nationality'];
-                  $target = "assets/id/".basename($_FILES['image']['name']);
-                  $file = $_FILES['files']['name'];
-                  if (move_uploaded_file($_FILES['files']['tmp_name'], $target)) {
+                  $target = "assets/id/".basename($_FILES['file']['name']);
+                  $file = $_FILES['file']['name'];
+                  if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
                     if ($nationality == 'Nigerian') {
-                      DB::query('INSERT INTO id VALUES(\'\',:artisan_id,:file,:nationality)', array(':artisan_id'=>$artisan_id,':file'=>$file,'nationality'=>$nationality));
+                      DB::query('INSERT INTO id VALUES(\'\',:file,:nationality,:artisan_id)', array(':file'=>$file,'nationality'=>$nationality,':artisan_id'=>$artisan_id));
                       echo "<script>window.open('dashboard.php', '_self')</script>";
                     }else {
                       echo "<span class='alert alert-danger col-md-12'>Sorry you are not allowed!!!!</span>";
