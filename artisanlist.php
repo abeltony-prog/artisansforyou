@@ -9,7 +9,7 @@ Author URL: http://feathers.xyz
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>KAM | About</title>
+  <title>Artisans For You | About</title>
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -78,7 +78,7 @@ Author URL: http://feathers.xyz
         <h1><a class="navbar-brand mr-lg-5" href="index.html">
             KAM
           </a></h1>
-        <!-- if logo is image enable this   
+        <!-- if logo is image enable this
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
       </a> -->
@@ -161,7 +161,7 @@ Author URL: http://feathers.xyz
                   <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
                 </span>
               </div>
-              <!-- END SEARCH INPUT -->              
+              <!-- END SEARCH INPUT -->
               <div class="padding"></div>
               <div class="row">
                 <!-- BEGIN ORDER RESULT -->
@@ -179,7 +179,7 @@ Author URL: http://feathers.xyz
                   </div>
                 </div>
                 <!-- END ORDER RESULT -->
-                
+
                 <div class="col-md-6 text-right">
                   <div class="btn-group">
                     <button type="button" class="btn btn-default active"><i class="fa fa-list"></i></button>
@@ -187,7 +187,7 @@ Author URL: http://feathers.xyz
                   </div>
                 </div>
               </div>
-              
+
               <!-- BEGIN TABLE RESULT -->
               <div class="table-responsive">
                 <table class="table table-hover">
@@ -274,7 +274,7 @@ Author URL: http://feathers.xyz
           </div>
         </div>
       </div>
-  
+
       <!-- move top -->
       <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fa fa-angle-up"></span>
@@ -284,7 +284,7 @@ Author URL: http://feathers.xyz
         window.onscroll = function () {
           scrollFunction()
         };
-  
+
         function scrollFunction() {
           if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             document.getElementById("movetop").style.display = "block";
@@ -292,7 +292,7 @@ Author URL: http://feathers.xyz
             document.getElementById("movetop").style.display = "none";
           }
         }
-  
+
         // When the user clicks on the button, scroll to the top of the document
         function topFunction() {
           document.body.scrollTop = 0;
