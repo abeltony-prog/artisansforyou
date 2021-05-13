@@ -56,9 +56,24 @@
           </ul>
           <span style="margin-right: 10%;"><strong><?php echo $artisan['name'] ?></strong> </span>
         </div>
-        <div class="d-lg-block d-none">
-          <a href="#" class="btn btn-secondary"><span><i class="fa fa-sign-out"></i>Logout</span></a>
-        </div>
+        <form class="d-lg-block d-none" action="" method="post">
+          <button class="btn btn-secondary" type="submit" name="logout"><span><i class="fa fa-sign-out"></i>Logout</span></button>
+        </form>
+        <?php
+if (!Login::isLoggedIn()) {
+die("<script>window.open('ArtisanLogin.php', '_self')</script>");
+}
+if (isset($_POST['logout'])) {
+DB::query('DELETE FROM artisan_login WHERE artisan_id =:id', array(':id'=>Login::isLoggedIn()));
+echo "<script>window.open('ArtisanLogin.php', '_self')</script>";
+if (isset($_COOKIE['SNID'])) {
+DB::query('DELETE FROM artisan_login WHERE tokens =:token', array(':token'=>sha1($_COOKIE['SNID'])));
+echo "<script>window.open('ArtisanLogin.php', '_self')</script>";
+}
+setcookie('SNID', '1' , time()-3600);
+setcookie('SNID_', '1' , time()-3600);
+}
+?>
         <!-- toggle switch for light and dark theme -->
         <div class="mobile-position">
           <nav class="navigation">

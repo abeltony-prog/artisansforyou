@@ -119,10 +119,28 @@ setcookie('SNID_', '1' , time()-3600);
               </tbody>
             </table>
           </div>
-          </div>
         <?php
       }
      ?>
+     <div >
+       <form style="margin-top: 250px;" class="row" method="post">
+         <div class="form-group col-md-6">
+           <textarea class="form-control" name="comment" id="textAreaExample1" placeholder="Leave a Comment" cols="30" rows="3"></textarea>
+         </div>
+         <div class="form-group col-md-6">
+           <button class="btn btn-secondary" type="submit" name="commit"><i class="fa fa-send"></i> </button>
+         </div>
+       </form>
+       <?php
+       if (isset($_POST['commit'])) {
+         $artisan_id = $artisan['id'];
+         $comment = $_POST['comment'];
+         DB::query('INSERT INTO comment VALUES(\'\',:artisan_id,:comment)', array(':artisan_id'=>$artisan_id,':comment'=>$comment));
+         echo "<script>window.open('index.php', '_self')</script>";
+       }
+        ?>
+     </div>
+   </div>
   </div>
   <!-- Template JavaScript -->
   <script src="assets/js/jquery-3.3.1.min.js"></script>

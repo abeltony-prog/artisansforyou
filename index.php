@@ -161,88 +161,38 @@
         <!-- /grids -->
         <div class="testimonial-width">
           <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <blockquote>
-                    <span class="fa fa-quote-left" aria-hidden="true"></span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                    voluptate rem ullam dolore nisi voluptatibus esse quasi. Integer sit amet .Lorem ipsum dolor sit
-                    amet adipisicing elit. Laborum dolor facere ipsum adipisicingelit.
-                  </blockquote>
-                  <div class="testi-des">
-                    <div class="test-img"><img src="assets/images/c1.jpg" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="peopl align-self">
-                      <h3>Rohit Paul</h3>
-                      <p class="indentity">Example City</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <blockquote>
-                    <span class="fa fa-quote-left" aria-hidden="true"></span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                    voluptate rem ullam dolore nisi voluptatibus esse quasi. Integer sit amet .Lorem ipsum dolor sit
-                    amet adipisicing elit. Laborum dolor facere ipsum adipisicingelit.
-                  </blockquote>
-                  <div class="testi-des">
-                    <div class="test-img"><img src="assets/images/c2.jpg" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="peopl align-self">
-                      <h3>Shveta</h3>
-                      <p class="indentity">Example City</p>
+            <?php
+              $allcomment = DB::query('SELECT * FROM comment LIMIT 4 ORDER BY DESC');
+              foreach ($allcomment as $comment) {
+                ?>
+                <div class="item">
+                  <div class="testimonial-content">
+                    <div class="testimonial">
+                      <blockquote>
+                        <span class="fa fa-quote-left" aria-hidden="true"></span>
+                        <?php echo $comment['comment'] ?>
+                      </blockquote>
+                      <?php
+                      $artisandetails = DB::query('SELECT * FROM artisans WHERE id=:artisanid', array(':artisanid'=>$comment['artisan_id']));
+                      foreach ($artisandetails as $detail) {
+                        ?>
+                        <div class="testi-des">
+                          <div class="test-img"><img src="assets/images/<?php echo $detail['profile'] ?>" class="img-fluid" alt="client-img">
+                          </div>
+                          <div class="peopl align-self">
+                            <h3><?php echo $detail['name'] ?></h3>
+                            <p class="indentity">Example City</p>
+                          </div>
+                        </div>
+                        <?php
+                      }
+                       ?>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <blockquote>
-                    <span class="fa fa-quote-left" aria-hidden="true"></span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                    voluptate rem ullam dolore nisi voluptatibus esse quasi. Integer sit amet .Lorem ipsum dolor sit
-                    amet adipisicing elit. Laborum dolor facere ipsum adipisicingelit.
-                  </blockquote>
-                  <div class="testi-des">
-                    <div class="test-img"><img src="assets/images/c3.jpg" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="peopl align-self">
-                      <h3>Roy Linderson</h3>
-                      <p class="indentity">Example City</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <blockquote>
-                    <span class="fa fa-quote-left" aria-hidden="true"></span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                    voluptate rem ullam dolore nisi voluptatibus esse quasi. Integer sit amet .Lorem ipsum dolor sit
-                    amet adipisicing elit. Laborum dolor facere ipsum adipisicingelit.
-                  </blockquote>
-                  <div class="testi-des">
-                    <div class="test-img"><img src="assets/images/c4.jpg" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="peopl align-self">
-                      <h3>Mike Thyson</h3>
-                      <p class="indentity">Example City</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
+                <?php
+              }
+             ?>
           </div>
         </div>
       </div>

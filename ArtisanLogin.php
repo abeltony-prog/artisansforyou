@@ -15,7 +15,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 </head>
 <style>
-    .back {
+body{
+  overflow-x: hidden;
+}
+  .back {
   background: #e2e2e2;
   width: 100%;
   position: absolute;
