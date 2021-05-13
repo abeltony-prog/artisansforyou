@@ -162,7 +162,7 @@
         <div class="testimonial-width">
           <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
             <?php
-              $allcomment = DB::query('SELECT * FROM comment LIMIT 4 ORDER BY DESC');
+              $allcomment = DB::query('SELECT * FROM comment ORDER BY id DESC Limit 5');
               foreach ($allcomment as $comment) {
                 ?>
                 <div class="item">
