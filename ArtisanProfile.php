@@ -103,7 +103,20 @@ setcookie('SNID_', '1' , time()-3600);
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="assets/images/<?php echo $artisan['profile'] ?>" alt="<?php echo $artisan['profile'] ?>" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4><?php echo $artisan['name'] ?></h4><br>
+                      <h4><?php echo $artisan['name'] ?>
+                        <?php
+                        $ratingvalidation = DB::query('SELECT * FROM rating WHERE artisan_id=:artid', array(':artid'=>$artisan['id']));
+                        foreach ($ratingvalidation as $valid) {
+                          if ($valid['star'] >= 80) {
+                            echo "<img width='30' src='assets/rate/silver.png' alt=''>";
+                          }elseif ($valid['star'] >=60) {
+                            echo "<img width='30' src='assets/rate/gold.png' alt=''>";
+                          }elseif ($valid['star'] >=50){
+                            echo "<img width='30' src='assets/rate/bronze.png' alt=''>";
+                          }
+                        }
+                         ?>
+                      </h4> <br>
                       <a class="btn btn-outline-secondary" href="Changelocation.php?id=<?php echo $artisan['id']; ?>"><span> <i class="fa fa-map"></i> Update My Location</span></a>
                       <a href="edit.php?id=<?php echo $artisan['id'] ?>" class="btn btn-outline-success">Edit Profile</a>
                     </div>
