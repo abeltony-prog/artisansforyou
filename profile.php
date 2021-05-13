@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Artisan For You | Profile</title>
+    <title>Profile | Artisan For You</title>
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -47,18 +47,7 @@
                             }
                              ?>
                              <form class="" action="" method="post">
-                               <?php
-                               $u_id = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
-                               if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid;user_id=:userid', array(':artisanid'=>$profile['id'],':userid'=>$u_id))) {
-                                ?>
                                 <button type="submit" name="rate" class="btn btn-outline-secondary"><span><i class="fa fa-star-o"></i> Rate</span></button>
-                                <?php
-                              }else {
-                                ?>
-                                <button type="submit" name="unrate" class="btn btn-outline-warning"><span><i class="fa fa-star"></i>Un Rate</span></button>
-                                <?php
-                              }
-                                ?>
                                <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#chatModal" href="#"><i class="fa fa-facebook"></i> Message</a>
 
                                <?php
@@ -113,12 +102,18 @@
                       DB::query('DELETE FROM favoriet WHERE user_id=:userid AND artisan_id=:artisanid', array(':userid'=>$userid, ':artisanid'=>$profile['id']));
                       echo "<script>window.open('index.php', '_self')</script>";
                     }elseif (isset($_POST['rate'])) {
-                      $star = 5;
-                      $userid = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
-                        DB::query('INSERT INTO rating VALUES(\'\',:user_id,:artisan_id,:star)', array(':user_id'=>$userid,':artisan_id'=>$profile['id'],':star'=>$star));
-                      }elseif (isset($_POST['unrate'])) {
-                        $userid = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
-                        DB::query('DELETE FROM rating WHERE artisan_id=:artisanid AND user_id=:userid', array(':artisanid'=>$profile['id'],':userid'=>$userid));
+                      if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$profile['id']))) {
+                        $star = 2;
+                        DB::query('INSERT INTO rating VALUES(\'\',:artisan_id,:star)', array(':artisan_id'=>$profile['id'],':star'=>$star));
+                        echo "<span class='col-md-12 col-sm-12 alert alert-success'>Thanks For rating!</span>";
+                      }else {
+                        $ratingartisan = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$profile['id']));
+                        foreach ($ratingartisan as $rate) {
+                          $sum = $rate['star'] + 2;
+                          DB::query('UPDATE rating SET star=:star WHERE artisan_id=:artisanid', array(':star'=>$sum,':artisanid'=>$profile['id']));
+                          echo "<span class='col-md-12 col-sm-12 alert alert-success'>Thanks For rating!</span>";
+                        }
+                      }
                       }
 
                      ?>

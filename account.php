@@ -123,7 +123,20 @@
                                 <tr>
                                     <td class="image"><img src="assets/images/<?php echo $all['profile'] ?>" alt=""></td>
                                     <td class="product"><strong><?php echo $all['name'] ?></strong><br><?php echo $all['gender'] ?></td>
-                                    <td class="rate text-right"><span><i class="fa fa-star"></i></i><i class="fa fa-star-half-o"></i></span></td>
+                                    <td class="rate text-right">
+                                      <?php
+                                      $ratingvalidation = DB::query('SELECT * FROM rating WHERE artisan_id=:artid', array(':artid'=>$all['id']));
+                                      foreach ($ratingvalidation as $valid) {
+                                        if ($valid['star'] >= 80) {
+                                          echo "<img style='width:20px;height:20px' src='assets/rate/silver.png' alt=''>";
+                                        }elseif ($valid['star'] >=60) {
+                                          echo "<img style='width:20px;height:20px' src='assets/rate/gold.png' alt=''>";
+                                        }elseif ($valid['star'] >=50){
+                                          echo "<img style='width:20px;height:20px' src='assets/rate/bronze.png' alt=''>";
+                                        }
+                                      }
+                                       ?>
+                                    </td>
                                     <td class="rate "><a class="btn btn-secondary" href="profile.php?artisan_id=<?php echo $all['id'] ?>">View Profile</a> </td>
                                 </tr>
                               <?php
