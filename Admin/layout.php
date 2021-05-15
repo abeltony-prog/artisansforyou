@@ -97,7 +97,7 @@ if (isset($_POST['logout'])) {
           $categories = DB::query('SELECT * FROM categories ORDER BY id DESC');
           foreach ($categories as $category) {
             ?>
-            <li><a class="" href="category_artisan.php?category = <?php echo $category['id'] ?>"><?php echo $category['category'] ?></a></li>
+            <li><a class="" href="category_artisan.php?category_id=<?php echo $category['id'] ?>"><?php echo $category['category'] ?></a></li>
             <?php
           }
            ?>
