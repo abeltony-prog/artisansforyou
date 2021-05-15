@@ -14,6 +14,8 @@ Author URL: http://feathers.xyz
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
     rel="stylesheet">
+    <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
+
   <!-- google fonts -->
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">

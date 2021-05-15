@@ -14,6 +14,8 @@
   <!-- google fonts -->
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">
+  <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
+
   <!-- Template CSS -->
 </head>
 

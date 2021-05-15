@@ -7,7 +7,8 @@
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="icon" href="../assets/icon/icon.png" type="image/x-icon">
+
   <title>Dashboard - Artisan For you</title>
 
   <!-- Bootstrap CSS -->
@@ -138,7 +139,7 @@ if (Login::isLoggedIn()) {
         <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
+                <h2><i class="fa fa-flag-o red"></i><strong>Registered Artisans / Locations</strong></h2>
                 <div class="panel-actions">
                   <a href="index.php#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
                   <a href="index.php#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -151,7 +152,6 @@ if (Login::isLoggedIn()) {
                     <tr>
                       <th>states</th>
                       <th>Artisan</th>
-                      <th>Option</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -169,10 +169,6 @@ if (Login::isLoggedIn()) {
                               <?php
                             }
                            ?>
-
-                          <td>
-                            <a class="btn btn-outline-primary" href="#">View</a>
-                          </td>
                         </tr>
                         <?php
                       }

@@ -10,6 +10,8 @@
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
     rel="stylesheet">
+    <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
+
   <!-- google fonts -->
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -89,7 +91,13 @@
         <h6 class="sub-title">Visit</h6>
         <h3 class="hny-title">Artisans</h3>
       </div>
-
+      <div class="row col-md-12">
+        <img style="border-radius: 120px 10px 120px 10px;" class="col-lg-6" src="assets/images/banner1.jpg" alt="">
+      <div class="col-md-6">
+        <p>We help in the integration of artisans in Nigeria into the digital economy by connecting them with direct consumers on an interactive web/mobile platform. This will give artisans a singular largest market for their products or services.</p>
+      </div>
+      </div>
+      </div>
     </div>
   </section>
   <!--//grids-->

@@ -12,6 +12,8 @@
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
     rel="stylesheet">
+    <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
+
   <!-- google fonts -->
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -39,10 +41,8 @@
       <div class="container py-lg-5">
         <div class="ab-section text-center">
           <h6 class="sub-title">About Us</h6>
-          <h3 class="hny-title">You need Artisan? This is the  most convenient user friendly online platform where people get artisan fast to render goods and services.</h3>
-          <p class="py-3 mb-3">
-             We help in the integration of artisans in Nigeria into the digital economy by connecting them with direct consumers on an interactive web/mobile platform.
-              This will give artisans a singular largest market for their products or services.<span></span> </p>
+          <h3 class="hny-title">You need Artisan?</h3>
+          <p class="py-3 mb-3"> This is the  most convenient user friendly online platform where people get artisan fast to render goods and services.<span></span> </p>
         </div>
         <div class="row mt-5">
           <div class="col-md-9 mx-auto">

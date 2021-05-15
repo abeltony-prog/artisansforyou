@@ -8,8 +8,7 @@
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="icon" href="../assets/icon/icon.png" type="image/x-icon">
-  <title>Cities - Artisan For you</title>
-
+    <title>Filter- Artisan For you</title>
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
@@ -53,45 +52,102 @@ if (Login::isLoggedIn()) {
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-users"></i> Artisan Categories</h3>
+
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-              <li><i class="fa fa-users"></i>Category List</li>
+                <li><i class="fa fa-users"></i>Filter</li>
             </ol>
+            <form class="page-header" action="locationfilter.php" method="get">
+              <div class="form-group col-md-9">
+                <select class="form-control" name="state_id">
+                  <option value="">Select State & City</option>
+                  <?php
+                    $allstates = DB::query('SELECT * FROM location');
+                    foreach ($allstates as $all) {
+                      ?>
+                      <option value="<?php echo $all['id'] ?>"><?php echo $all['state'].' & '.$all['id'] ?></option>
+                      <?php
+                    }
+                   ?>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i><span>Search</span> </button>
+              </div>
+            </form>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">State</th>
-      <th scope="col">City</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $cities = DB::query('SELECT * FROM location');
-    foreach ($cities as $city) {
-      ?>
-      <tr>
-        <td><?php echo $city['id'] ?></td>
-        <td><?php echo $city['state'] ?></td>
-        <td><?php echo $city['city'] ?></td>
-      </tr>
-      <?php
-    }
-     ?>
-  </tbody>
-</table>
-          </div>
-
         </div>
         <!--/.row-->
         <!-- Today status end -->
         <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2><i class="fa fa-users red"></i><strong>Artisans List</strong></h2>
+                <div class="panel-actions">
+                  <a href="index.php#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                  <a href="index.php#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="index.php#" class="btn-close"><i class="fa fa-times"></i></a>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table bootstrap-datatable countries">
+                  <thead>
+                    <tr>
+                      <th>Artisan Name</th>
+                      <th>Email</th>
+                      <th>State & City</th>
+                      <th>Option</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $allcities = DB::query('SELECT * FROM artisan_location WHERE artisan_id=:artisanid', array(':artisanid'=>$_GET['state_id']));
+                      foreach ($allcities as $cities) {
+                        $artisanlocation = DB::query('SELECT * FROM artisans WHERE id=:artisanid', array(':artisanid'=>$cities['id']));
+                        foreach ($artisanlocation as $location) {
+                        ?>
+                        <tr>
+                          <td><?php echo $cities['name'] ?></td>
+                          <td><?php echo $cities['email'] ?></td>
+                          <?php
+                          if (DB::query('SELECT * FROM artisan_location WHERE artisan_id=:artisanid', array(':artisanid'=>$cities['id']))) {
+                            $artisancity = DB::query('SELECT * FROM artisan_location WHERE artisan_id=:artisanid', array(':artisanid'=>$cities['id']));
+                            foreach ($artisancity as $city) {
+                                $locationvalidation = DB::query('SELECT * FROM location WHERE id=:id', array(':id'=>$city['location_id']));
+                                foreach ($locationvalidation as $validation) {
+                                  ?>
+                                   <td><?php echo $validation['state']." & ".$validation['city']; ?></td>
+                                  <?php
+                                }
+                              }
+                              }else {
+                                ?>
+
+                                <td><span style="color: red;"><strong>No Location Yet</strong> </span></td>
+
+                                <?php
+                              }
+                            }
+                             ?>
+
+                        <!--  <td>
+                            <a class="btn btn-outline-primary" href="#">View</a>
+                          </td>-->
+                        </tr>
+                        <?php
+                      }
+                     ?>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+          <!--/col-->
+
+        </div>
         <!-- statics end -->
       </section>
     </section>
