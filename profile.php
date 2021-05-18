@@ -50,7 +50,7 @@
                              ?>
                              <form class="" action="" method="post">
                                 <button type="submit" name="rate" class="btn btn-outline-secondary"><span><i class="fa fa-star-o"></i> Rate</span></button>
-                               <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#chatModal" href="#"><i class="fa fa-facebook"></i> Message</a>
+                               <a class="btn btn-outline-primary" data-toggle="modal" data-target="#chatModal" href="#"><i class="fa fa-send"></i> Message</a>
 
                                <?php
                                $user_valid = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];

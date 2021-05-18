@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+<?php include('include/DB.php') ?>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -36,15 +36,36 @@
         <div class="card ">
             <div class="card-header text-center"><img width="70" class="logo-img" src="assets/images/artisans logo.png" alt="logo"><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
-                <form>
+                <form action="" method="post">
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="username" name="name" type="text" placeholder="Username" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="password" name="password" type="password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button type="submit" name="login" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
+                <?php
+                  if (isset($_POST['login'])) {
+                    $name = $_POST['name'];
+                    $password = $_POST['password'];
+                    if (DB::query('SELECT name FROM admin_user WHERE name = :name', array(':name'=>$name))) {
+                      if (password_verify($password , DB::query('SELECT password FROM admin_user WHERE name=:name', array(':name'=>$name))[0]['password'])) {
+                        $cstrong = True;
+                        $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
+                        $admin_id = DB::query('SELECT id FROM admin_user WHERE name=:name', array(':name'=>$name))[0]['id'];
+                        DB::query('INSERT INTO admin_logins VALUES(\'\', :admin_id,:tokens)', array(':tokens'=>sha1($token),':admin_id'=>$admin_id));
+                        setcookie("SNID", $token, time() + 60 * 60 * 24 * 7, '/', NULL, NULL, TRUE );
+                        setcookie("SNID_", '1', time() + 60 * 60 * 24 * 3, '/', NULL, NULL, TRUE );
+                        echo "<script>window.open('index.php', '_self')</script>";
+                      }else {
+                        echo "<script>alert('Unknown Password')</script>";
+                      }
+                    }else {
+                      echo "<script>alert('Unknown User and Wrong password')</script>";
+                    }
+                }
+                 ?>
             </div>
         </div>
     </div>

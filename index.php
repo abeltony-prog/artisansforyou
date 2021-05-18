@@ -143,19 +143,41 @@
   </section>
   <!-- //stats -->
   <!--/-->
-  <!--<div id="myblog" class="best-rooms py-5">
+  <div id="myblog" class="best-rooms py-5">
     <div class="container py-md-5">
       <div class="title-content text-left mb-lg-5 mb-4">
         <h6 class="sub-title">Visit</h6>
         <h3 class="hny-title">Blog</h3>
       </div>
-        <div class="ban-content-inf row">
-            <div class="maghny-gd-1 col-lg-12 mt-lg-0 mt-4">
 
+      <div class="card-group">
+        <a class="card mr-2 border rounded" href="about.php">
+            <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
+        </a>
+        <div class="card mr-2 border rounded">
+          <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card mr-2 border rounded">
+          <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
         </div>
     </div>
-</div>-->
+    </div>
+</div>
   <!-- //stats -->
   <!-- testimonials -->
   <section class="w3l-clients" id="clients">
@@ -224,7 +246,7 @@
                   <ul class="footer-gd-16">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="#myblog">Blog</a></li>
+                    <li><a href="blog.php">Blog</a></li>
                     <li><a href="contact.php">Contact Us</a></li>
                   </ul>
                 </div>
@@ -245,7 +267,7 @@
           </div>
           <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
             <div class="columns text-lg-left text-center">
-              <p>&copy; 2021 KAM. All rights reserved.Developed by <a href="https://umbrellagrp.rw/" target="_blank">
+              <p>&copy; 2021 Artisans For You. All rights reserved.Developed by <a href="https://umbrellagrp.rw/" target="_blank">
                 Umbrella
                 </a>
               </p>

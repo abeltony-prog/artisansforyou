@@ -72,7 +72,7 @@
     </div>
 </section>
   <!-- team -->
-  <!--<section class="w3l-team" id="team">
+  <section class="w3l-team" id="team">
     <div class="team-block py-5">
       <div class="container py-lg-5">
         <div class="title-content text-center mb-lg-3 mb-4">
@@ -167,7 +167,7 @@
         </div>
       </div>
     </div>
-  </section>-->
+  </section>
   <!-- //team -->
 
   <!--/w3l-footer-29-main-->
@@ -183,7 +183,6 @@
                   <ul class="footer-gd-16">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="blog.php">Blog</a></li>
                     <li><a href="contact.php">Contact Us</a></li>
                   </ul>
                 </div>
