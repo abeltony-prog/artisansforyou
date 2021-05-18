@@ -27,10 +27,10 @@
   <section class="w3l-about-breadcrumb text-left">
     <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
       <div class="container py-2">
-        <h2 class="title">About Us</h2>
+        <h2 class="title">Blog</h2>
         <ul class="breadcrumbs-custom-path mt-2">
           <li><a href="#url">Home</a></li>
-          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> About </li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Blog </li>
         </ul>
       </div>
     </div>
@@ -38,137 +38,39 @@
   <!-- //about breadcrumb -->
   <!-- /about-6-->
   <section class="w3l-cta4 py-5">
-      <div class="container py-lg-5">
-        <div class="ab-section text-center">
-          <h6 class="sub-title">About Us</h6>
-          <h3 class="hny-title">You need Artisan?</h3>
-          <p class="py-3 mb-3"> This is the  most convenient user friendly online platform where people get artisan fast to render goods and services.<span></span> </p>
-        </div>
-        <div class="row mt-5">
-          <div class="col-md-9 mx-auto">
-            <img src="assets/images/banner1.jpg" class="img-fluid" alt="">
+    <div id="myblog" class="best-rooms py-5">
+      <div class="container">
+        <div class="card-group">
+          <a class="card mr-2 border rounded" href="about.php">
+              <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+          </a>
+          <div class="card mr-2 border rounded">
+            <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
           </div>
-        </div>
+          <div class="card mr-2 border rounded">
+            <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
       </div>
+      </div>
+  </div>
   </section>
   <!-- //about-6-->
-   <!-- /content-6-->
-   <section class="w3l-content-6 py-5">
-    <div class="container py-lg-5">
-      <div class="row">
-        <div class="col-lg-6 content-6-left pr-lg-5">
-          <h6 class="sub-title">Why Choose Us</h6>
-          <h3 class="hny-title">This system will create unique access for improved productivity,
-          creativity and sustainability. </h3>
-        </div>
-        <div class="col-lg-6 content-6-right mt-lg-0 mt-4">
-          <p class="mb-3">This platform is strategically positioned to
-          ensure that our Customers who are people that need artisans and the artisans themselves get the best services.</p>
-            <p class="mb-3"><span><strong>Vision:</strong> </span>To be the leading platform of choice connecting artisans and their clients in various localities. </p>
-            <p class="mb-3"><span><strong>Mission:</strong> </span>To help clients or customers get the best artisan of choice closest in their locality through this online platform. </p>
-              <a href="index.php" class="btn btn-style btn-primary mt-4">Get Started</a>
-        </div>
-      </div>
-    </div>
 </section>
-  <!-- team -->
-  <section class="w3l-team" id="team">
-    <div class="team-block py-5">
-      <div class="container py-lg-5">
-        <div class="title-content text-center mb-lg-3 mb-4">
-          <h6 class="sub-title">Our team</h6>
-          <h3 class="hny-title">Meet our Guides</h3>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-6 mt-lg-5 mt-4">
-            <div class="box16">
-              <a href="#url"><img src="assets/images/team1.jpg" alt="" class="img-fluid" /></a>
-              <div class="box-content">
-                <h3 class="title"><a href="#url">Alexander</a></h3>
-                <span class="post">Description</span>
-                <ul class="social">
-                  <li>
-                    <a href="#" class="facebook">
-                      <span class="fa fa-facebook-f"></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="twitter">
-                      <span class="fa fa-twitter"></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6 mt-lg-5 mt-4">
-            <div class="box16">
-              <a href="#url"><img src="assets/images/team2.jpg" alt="" class="img-fluid" /></a>
-              <div class="box-content">
-                <h3 class="title"><a href="#url">Victoria</a></h3>
-                <span class="post">Description</span>
-                <ul class="social">
-                  <li>
-                    <a href="#" class="facebook">
-                      <span class="fa fa-facebook-f"></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="twitter">
-                      <span class="fa fa-twitter"></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6 mt-lg-5 mt-4">
-            <div class="box16">
-              <a href="#url"><img src="assets/images/team3.jpg" alt="" class="img-fluid" /></a>
-              <div class="box-content">
-                <h3 class="title"><a href="#url">Smith roy</a></h3>
-                <span class="post">Description</a></span>
-                <ul class="social">
-                  <li>
-                    <a href="#" class="facebook">
-                      <span class="fa fa-facebook-f"></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="twitter">
-                      <span class="fa fa-twitter"></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6 mt-lg-5 mt-4">
-            <div class="box16">
-              <a href="#url"><img src="assets/images/team4.jpg" alt="" class="img-fluid" /></a>
-              <div class="box-content">
-                <h3 class="title"><a href="#url">Johnson</a></h3>
-                <span class="post">Description</a></span>
-                <ul class="social">
-                  <li>
-                    <a href="#" class="facebook">
-                      <span class="fa fa-facebook-f"></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="twitter">
-                      <span class="fa fa-twitter"></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- //team -->
 
   <!--/w3l-footer-29-main-->
     <!-- footer -->

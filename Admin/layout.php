@@ -75,6 +75,12 @@ if (isset($_POST['logout'])) {
                       <span>Dashboard</span>
                   </a>
       </li>
+      <li>
+        <a class="" href="blog.php">
+                      <i class="icon_book"></i>
+                      <span>Blog Post</span>
+                  </a>
+      </li>
       <li class="sub-menu">
         <a href="javascript:;" class="">
                       <i class="fa fa-desktop"></i>
