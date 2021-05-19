@@ -84,6 +84,7 @@ if (Login::isLoggedIn()) {
                     </div>
                     <div class="form-group">
                       <div class="col-sm-12">
+                        <textarea class="form-control" name="msg" rows="8" cols="80"></textarea>
                       </div>
                     </div>
                     <div class="form-group">
@@ -91,9 +92,18 @@ if (Login::isLoggedIn()) {
                         <input class="form-control" type="file" name="sub" value="">
                       </div>
                     </div>
-                    <input type="submit" name="" class="btn btn-default pull-right" value="Reset">
-                    <button type="submit" name="add"class="btn btn-success pull-right">Post</button>
+                    <button type="submit" name="add"class="btn btn-primary pull-right">Post</button>
                   </form>
+                  <?php
+                  if (isset($_POST['add'])) {
+                    $sub = $_POST['sub'];
+                    $msg = $_POST['msg'];
+                    $target = "../assets/blog".basename($_FILES['file']['name']);
+                    $file = $_FILES['file']['name'];
+                    DB::query('INSERT INTO blog VALUES(\'\',:sub,:msg,:file,NOW())', array(':sub'=>$sub,':msg'=>$msg,':file'=>$file));
+                    echo "<script>window.open('blog.php', '_self')</script>";
+                  }
+                   ?>
                 </div>
               </section>
             </div>
