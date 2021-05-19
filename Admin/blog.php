@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+  <meta name="description" content="artisans for you">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="icon" href="../assets/icon/icon.png" type="image/x-icon">
@@ -54,7 +54,7 @@ if (Login::isLoggedIn()) {
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-book"></i> Blog</h3>
+            <h3 class="page-header"><i class="fa fa-book"></i> Blog <a class="btn btn-primary" href="addblog.php"><i class="fa fa-plus"></i>Add</a></h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
               <li><i class="fa fa-book"></i>Blog Post</li>
@@ -72,7 +72,7 @@ if (Login::isLoggedIn()) {
             </div>
             <div class="">
               <form class="pull-right" action="index.html" method="post">
-                <button class="btn btn-danger" type="button" name="button">DELETE </button>
+                <button class="btn btn-danger" type="button" name="button">DELETE</button>
               </form>
             </div>
           </div>

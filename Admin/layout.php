@@ -83,7 +83,7 @@ if (isset($_POST['logout'])) {
       </li>
       <li class="sub-menu">
         <a href="javascript:;" class="">
-                      <i class="fa fa-desktop"></i>
+                      <i class="fa fa-cog"></i>
                       <span>More</span>
                       <span class="menu-arrow arrow_carrot-right"></span>
                   </a>

@@ -1,10 +1,4 @@
-/*
-    Theme Name: NiceAdmin
-    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-*/
-/* Import fonts */
+
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
 
@@ -140,7 +134,7 @@ table tr th { color: #688a7e;}
 
 .login-img-body{
 
-  background: url('../img/bg-1.jpg') no-repeat center center fixed;
+  background: url('../img/banner2.jpg') no-repeat center center fixed;
 
   -webkit-background-size: cover;
 

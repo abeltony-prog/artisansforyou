@@ -65,7 +65,7 @@ if (Login::isLoggedIn()) {
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box blue-bg">
-              <i class="fa fa-desktop"></i>
+              <i class="fa fa-cog"></i>
               <?php
                 $categoryCount = DB::query('SELECT COUNT(id) AS Totalcategory FROM Categories');
                 foreach ($categoryCount as $catecount) {
