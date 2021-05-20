@@ -60,23 +60,20 @@
           </div>
         </div>
         <div class="col-lg-6 mt-lg-0 mt-5 contact-right">
-          <form action="" method="post" class="signin-form">
+          <form action="mail.php" method="post" class="signin-form">
             <div class="input-grids">
               <div class="form-group">
-                <input type="text" name="w3lName" id="w3lName" placeholder="Your Name*" class="contact-input" />
+                <input type="text" name="name" id="w3lName" placeholder="Your Name*" class="contact-input" />
               </div>
               <div class="form-group">
-                <input type="email" name="w3lSender" id="w3lSender" placeholder="Your Email*" class="contact-input" required="" />
-              </div>
-              <div class="form-group">
-                <input type="text" name="w3lSubect" id="w3lSubect" placeholder="Subject*" class="contact-input" />
+                <input type="email" name="sender" id="w3lSender" placeholder="Your Email*" class="contact-input" required="" />
               </div>
             </div>
             <div class="form-group">
-              <textarea name="w3lMessage" id="w3lMessage" placeholder="Type your message here*" required=""></textarea>
+              <textarea name="w3lMessage" id="message" placeholder="Type your message here*" required=""></textarea>
             </div>
             <div class="text-right">
-              <button class="btn btn-style btn-primary">Send Message</button>
+              <button type="submit" name="send" class="btn btn-style btn-primary">Send Message</button>
             </div>
           </form>
         </div>
