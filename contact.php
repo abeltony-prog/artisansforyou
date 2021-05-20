@@ -70,7 +70,7 @@
               </div>
             </div>
             <div class="form-group">
-              <textarea name="w3lMessage" id="message" placeholder="Type your message here*" required=""></textarea>
+              <textarea name="message" id="w3lMessage" placeholder="Type your message here*" required=""></textarea>
             </div>
             <div class="text-right">
               <button type="submit" name="send" class="btn btn-style btn-primary">Send Message</button>

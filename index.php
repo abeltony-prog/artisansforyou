@@ -151,30 +151,20 @@
       </div>
 
       <div class="card-group">
-        <a class="card mr-2 border rounded" href="about.php">
-            <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </a>
-        <div class="card mr-2 border rounded">
-          <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card mr-2 border rounded">
-          <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
+        <?php
+        $allblogs = DB::query('SELECT * FROM blog ORDER BY id DESC LIMIT 3');
+        foreach ($allblogs as $blog) {
+          ?>
+          <a class="card mr-2 border rounded" href="about.php">
+              <img class="card-img-top" src="assets/blog/<?php echo $blog['file'] ?>" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $blog['sub'] ?></h5>
+                <p class="card-text"><small class="text-muted">Last posted at <?php echo $blog['posted_at'] ?></small></p>
+              </div>
+          </a>
+          <?php
+        }
+         ?>
     </div>
     </div>
 </div>

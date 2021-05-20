@@ -63,12 +63,15 @@ if (Login::isLoggedIn()) {
         </div>
 
         <div class="row">
+          <?php
+          $allblogs = DB::query('SELECT * FROM blog ORDER BY id DESC LIMIT 3');
+          foreach ($allblogs as $blog) {
+            ?>
           <div class="mr-2 border rounded col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <img width="290" class="card-img-top" src="../assets/images/banner1.jpg" alt="Card image cap">
+            <img width="290" class="card-img-top" src="../assets/blog/<?php echo $blog['file'] ?>" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 class="card-title"><?php echo $blog['sub'] ?></h5>
+              <p class="card-text"><small class="text-muted">Last posted at <?php echo $blog['posted_at'] ?></small></p>
             </div>
             <div class="">
               <form class="pull-right" action="index.html" method="post">
@@ -76,6 +79,9 @@ if (Login::isLoggedIn()) {
               </form>
             </div>
           </div>
+          <?php
+        }
+         ?>
           <!--/.col-->
         </div>
         <!--/.row-->
