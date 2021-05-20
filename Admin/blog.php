@@ -64,8 +64,8 @@ if (Login::isLoggedIn()) {
 
         <div class="row">
           <?php
-          $allblogs = DB::query('SELECT * FROM blog ORDER BY id DESC LIMIT 3');
-          foreach ($allblogs as $blog) {
+          $blogs = DB::query('SELECT * FROM blog ORDER BY id DESC LIMIT 70');
+          foreach ($blogs as $blog) {
             ?>
           <div class="mr-2 border rounded col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <img width="290" class="card-img-top" src="../assets/blog/<?php echo $blog['file'] ?>" alt="Card image cap">
@@ -73,16 +73,11 @@ if (Login::isLoggedIn()) {
               <h5 class="card-title"><?php echo $blog['sub'] ?></h5>
               <p class="card-text"><small class="text-muted">Last posted at <?php echo $blog['posted_at'] ?></small></p>
             </div>
-            <div class="">
-              <form class="pull-right" action="index.html" method="post">
-                <button class="btn btn-danger" type="button" name="button">DELETE</button>
-              </form>
-            </div>
           </div>
+          <!--/.col-->
           <?php
         }
-         ?>
-          <!--/.col-->
+           ?>
         </div>
         <!--/.row-->
       </section>
