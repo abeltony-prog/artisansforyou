@@ -67,14 +67,6 @@ if (Login::isLoggedIn()) {
                 <header class="panel-heading">
                   Add New Blog
                 </header>
-                <?php
-                if (isset($_POST['add'])) {
-                  $state = $_POST['state'];
-                  $city = $_POST['city'];
-                  DB::query('INSERT INTO location VALUES(\'\',:state,:city)', array(':state'=>$state,':city'=>$city));
-                  echo "<span class='alert alert-success'>City added Success Fully</span>";
-                }
-                 ?>
                 <div class="panel-body">
                     <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -89,7 +81,7 @@ if (Login::isLoggedIn()) {
                     </div>
                     <div class="form-group">
                       <div class="col-sm-12">
-                        <input class="form-control" type="file" name="sub" value="">
+                        <input class="form-control" type="file" name="file" value="">
                       </div>
                     </div>
                     <button type="submit" name="add"class="btn btn-primary pull-right">Post</button>
@@ -98,10 +90,14 @@ if (Login::isLoggedIn()) {
                   if (isset($_POST['add'])) {
                     $sub = $_POST['sub'];
                     $msg = $_POST['msg'];
-                    $target = "../assets/blog".basename($_FILES['file']['name']);
+                    $target = "../assets/blog/".basename($_FILES['file']['name']);
                     $file = $_FILES['file']['name'];
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
                     DB::query('INSERT INTO blog VALUES(\'\',:sub,:msg,:file,NOW())', array(':sub'=>$sub,':msg'=>$msg,':file'=>$file));
                     echo "<script>window.open('blog.php', '_self')</script>";
+                  }else {
+                    echo "<script>window.open('addblog.php', '_self')</script>";
+                  }
                   }
                    ?>
                 </div>

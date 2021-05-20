@@ -41,6 +41,9 @@
     <div id="myblog" class="best-rooms py-5">
       <div class="container">
         <div class="card-group">
+          <?php
+            
+           ?>
           <a class="card mr-2 border rounded" href="about.php">
               <img class="card-img-top" src="assets/images/banner1.jpg" alt="Card image cap">
               <div class="card-body">
