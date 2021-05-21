@@ -27,34 +27,35 @@
   <section class="w3l-about-breadcrumb text-left">
     <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
       <div class="container py-2">
-        <h2 class="title">Blog</h2>
+        <?php
+        $readblog=DB::query('SELECT * FROM blog WHERE id=:blogid', array(':blogid'=>$_GET['blogid']));
+        foreach ($readblog as $read) {
+                  ?>
+        <h2 class="title"><?php echo $read['sub'] ?></h2>
         <ul class="breadcrumbs-custom-path mt-2">
-          <li><a href="#url">Home</a></li>
-          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Blog </li>
+          <li><a href="blog.php">Blog</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> read </li>
         </ul>
+<?php
+      }
+       ?>
       </div>
     </div>
   </section>
   <!-- //about breadcrumb -->
   <!-- /about-6-->
   <section class="w3l-cta4 py-5">
-    <div id="myblog" class="best-rooms py-5">
+    <div id="myblog" class="best-rooms">
       <div class="container">
         <div class="card-group">
-          <?php
-          $allinone = DB::query('SELECT * FROM blog ORDER BY id DESC LIMIT 100');
-          foreach ($allinone as $all) {
-            ?>
-            <a class="card mr-2 border rounded" href="blogread.php?blogid=<?php echo $all['id'] ?>">
-                <img class="card-img-top" src="assets/blog/<?php echo $all['file'] ?>" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title"><?php echo $all['sub'] ?></h5>
-                  <p class="card-text"><small class="text-muted">Last Posted at <?php echo $all['posted_at']?></small></p>
-                </div>
-            </a>
+          <div class="container">
             <?php
-          }
-           ?>
+            $readblog=DB::query('SELECT * FROM blog WHERE id=:blogid', array(':blogid'=>$_GET['blogid']));
+            foreach ($readblog as $read) {
+              echo $read['msg'];
+            }
+             ?>
+          </div>
       </div>
       </div>
   </div>

@@ -155,7 +155,7 @@
         $allblogs = DB::query('SELECT * FROM blog ORDER BY id DESC LIMIT 3');
         foreach ($allblogs as $blog) {
           ?>
-          <a class="card mr-2 border rounded" href="about.php">
+          <a class="card mr-2 border rounded" href="blogread.php?blogid=<?php echo $blog['id'] ?>">
               <img class="card-img-top" src="assets/blog/<?php echo $blog['file'] ?>" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title"><?php echo $blog['sub'] ?></h5>

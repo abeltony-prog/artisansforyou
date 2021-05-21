@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2021 at 05:12 PM
+-- Generation Time: May 21, 2021 at 06:27 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -89,12 +89,38 @@ CREATE TABLE `artisan_login` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `sub` varchar(255) NOT NULL,
+  `msg` text NOT NULL,
+  `file` text NOT NULL,
+  `posted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `category` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(110) NOT NULL,
+  `artisan_id` int(116) NOT NULL,
+  `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -154,7 +180,6 @@ CREATE TABLE `location` (
 
 CREATE TABLE `rating` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `artisan_id` int(11) NOT NULL,
   `star` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -228,10 +253,23 @@ ALTER TABLE `artisan_login`
   ADD KEY `artisan_id` (`artisan_id`);
 
 --
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `artisan_id` (`artisan_id`);
 
 --
 -- Indexes for table `favoriet`
@@ -266,7 +304,6 @@ ALTER TABLE `location`
 --
 ALTER TABLE `rating`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
   ADD KEY `artisan_id` (`artisan_id`);
 
 --
@@ -318,10 +355,22 @@ ALTER TABLE `artisan_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(110) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `favoriet`
@@ -351,7 +400,7 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -395,6 +444,12 @@ ALTER TABLE `artisan_login`
   ADD CONSTRAINT `artisan_login_ibfk_1` FOREIGN KEY (`artisan_id`) REFERENCES `artisans` (`id`);
 
 --
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`artisan_id`) REFERENCES `artisanforyou`.`artisans` (`id`);
+
+--
 -- Constraints for table `favoriet`
 --
 ALTER TABLE `favoriet`
@@ -417,8 +472,7 @@ ALTER TABLE `id`
 -- Constraints for table `rating`
 --
 ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`artisan_id`) REFERENCES `artisans` (`id`);
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`artisan_id`) REFERENCES `artisans` (`id`);
 
 --
 -- Constraints for table `users`
