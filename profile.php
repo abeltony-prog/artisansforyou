@@ -77,12 +77,19 @@
                           <div class="modal-body">
                               <form class="row col-md-12" action="" method="post">
                                 <div class="form-group col-md-10">
-                                    <textarea class="col-md-12" name="name" rows="4" cols=40 placeholder="Send Message" ></textarea>
+                                    <textarea class="col-md-12" name="msg" rows="4" cols=40 placeholder="Send Message" ></textarea>
                                 </div>
                                 <div class="form-group col-md-2">
                                   <button class="btn btn-outline-primary col-md-12" type="submit" name="send"><i class="fa fa-send"></i></button>
                                 </div>
                               </form>
+                              <?php
+                                if (isset($_POST['send'])) {
+                                  $msg = "You Have a New Message";
+                                  DB::query('INSERT INTO msg VALUES(\'\',:msg,:artisan_id,NOW())', array(':msg'=>$msg,':artisan_id'=>$_GET['artisan_id']));
+                                  echo "<script>window.open('mail_sms.php', '_self')</script>";
+                                }
+                               ?>
                           </div>
                         </div>
                       </div>
