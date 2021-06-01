@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Artisan For You| My profile</title>
+    <title>Artisan For You| My profile Edit</title>
     <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
 
     <!-- google fonts -->
@@ -62,25 +62,6 @@
           <div class="d-lg-block d-none">
               <span><i class="fa fa-user"></i> <?php echo $user['username'] ?></span>
           </div>
-
-                   <form style="margin-left: 60px;" class="d-lg-block d-none" action="" method="post">
-                      <button class="btn btn-secondary" type="submit" name="logout"><span><i class="fa fa-sign-out"></i></span></button>
-                    </form>
-                    <?php
-          if (!Login::isLoggedIn()) {
-          die("<script>window.open('index.php', '_self')</script>");
-          }
-          if (isset($_POST['logout'])) {
-          DB::query('DELETE FROM users_login WHERE user_id =:id', array(':id'=>Login::isLoggedIn()));
-          echo "<script>window.open('index.php', '_self')</script>";
-          if (isset($_COOKIE['SNID'])) {
-          DB::query('DELETE FROM users_login WHERE tokens =:token', array(':token'=>sha1($_COOKIE['SNID'])));
-            echo "<script>window.open('index.php', '_self')</script>";
-          }
-          setcookie('SNID', '1' , time()-3600);
-          setcookie('SNID_', '1' , time()-3600);
-          }
-          ?>
           <!-- toggle switch for light and dark theme -->
           <div class="mobile-position">
             <nav class="navigation">
@@ -117,7 +98,7 @@
                             <?php
                           }
                            ?>
-                          <a href="userEdit.php" class="btn btn-outline-success">Edit Profile</a>
+                          <a href="locationChange.php" class="btn btn-outline-secondary"><i class="fa fa-pin"></i> Change My Location</a>
                         </div>
                       </div>
                     </div>
@@ -125,43 +106,62 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card mb-3">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Full Name</h6>
+                    <form class="" action="" method="post">
+                      <div class="card-body">
+
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <input class="form-control" type="text" name="name" value="<?php echo $user['username'] ?>">
+                          </div>
                         </div>
-                        <div class="col-sm-9 text-secondary">
-                          <?php echo $user['username'] ?>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <input class="form-control" type="text" name="email" value="<?php echo $user['email'] ?>">
+                          </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Gender</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <input class="form-control" type="text" name="gender" value="<?php echo $user['gender'] ?>" disabled>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Mobile</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <input class="form-control" type="text" name="mobile" value="<?php echo $user['mobile'] ?>">
+                          </div>
+                        </div>
+
                       </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Email</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          <?php echo $user['email'] ?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Gender</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          <?php echo $user['gender'] ?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Mobile</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          <?php echo $user['mobile'] ?>
-                        </div>
-                      </div>
-                    </div>
+                      <a class="btn btn-outline-secondary pull-right" href="Myprofile.php">Go Back</a>
+                      <input class="btn btn-primary pull-right" type="submit" name="update" value="Update">
+                    </form>
+                    <?php
+                      if (isset($_POST['update'])) {
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $telephone = $_POST['mobile'];
+                        DB::query('UPDATE users SET username=:name,email=:email,mobile=:telephone WHERE id=:id', array(
+                          ":name"=>$name,":email"=>$email,":telephone"=>$telephone,":id"=>$user['id']
+                        ));
+                        echo "<span class='alert alert-success col-md-12'>Profile Updated!!!!</span>";
+                        echo "<script>window.open('Myprofile.php', '_self')</script>";
+                      }
+                     ?>
+
                   </div>
                 </div>
               </div>

@@ -1,4 +1,6 @@
 <?php
+include('Database/user_Logins.php');
+
 //get data from form
 if (Login::isLoggedIn()) {
   $users = DB::query('SELECT * FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()));

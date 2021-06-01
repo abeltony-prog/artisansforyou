@@ -86,7 +86,8 @@
                               <?php
                                 if (isset($_POST['send'])) {
                                   $msg = "You Have a New Message";
-                                  DB::query('INSERT INTO msg VALUES(\'\',:msg,:artisan_id,NOW())', array(':msg'=>$msg,':artisan_id'=>$_GET['artisan_id']));
+                                  $user = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
+                                  DB::query('INSERT INTO msg VALUES(\'\',:msg,:artisan_id,:users_id,NOW())', array(':msg'=>$msg,':artisan_id'=>$_GET['artisan_id'],':users_id'=>$user));
                                   echo "<script>window.open('mail_sms.php', '_self')</script>";
                                 }
                                ?>

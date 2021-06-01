@@ -113,11 +113,22 @@ setcookie('SNID_', '1' , time()-3600);
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><b>You have a new message</b> </td>
-                  <td>From <a style="color: blue;" href="#"><u>Mark</u> </a> </td>
-                  <td><small><span>Dec 12th 2021 12:30</span> </small> </td>
-                </tr>
+                <?php
+                  $sms = DB::query('SELECT * FROM msg WHERE artisan_id=:artisanid', array(':artisanid'=>$artisan['id']));
+                  foreach ($sms as $message) {
+                    ?>
+                    <tr>
+                      <td><b><?php echo $message['msg'] ?></b> </td>
+                      <td>From <u style="color: blue;">
+                        <?php
+                        $usernames = DB::query('SELECT username FROM users WHERE id=:userid', array(':userid'=>$message['users_id']))[0]['username'];
+                        echo $usernames;?>
+                      </u> to your email inbox </td>
+                      <td><small><span><?php echo date("F j, Y ", strtotime($message["posted_at"])); ?></span> </small> </td>
+                    </tr>
+                    <?php
+                  }
+                 ?>
               </tbody>
             </table>
           </div>

@@ -42,8 +42,27 @@ if (Login::isLoggedIn()) {
         foreach ($users as $user) {
         ?>
       <div class="d-lg-block d-none">
-          <span><i class="fa fa-user"></i> <?php echo $user['username'] ?></span>
+          <span><i class="fa fa-user"></i> <?php echo $user['username'] ?> </span>
       </div>
+               <form style="margin-left: 60px;" class="d-lg-block d-none" action="" method="post">
+                  <button class="btn btn-secondary" type="submit" name="logout"><span><i class="fa fa-sign-out"></i></span></button>
+                </form>
+                <?php
+      if (!Login::isLoggedIn()) {
+      die("<script>window.open('index.php', '_self')</script>");
+      }
+      if (isset($_POST['logout'])) {
+      DB::query('DELETE FROM users_login WHERE user_id =:id', array(':id'=>Login::isLoggedIn()));
+      echo "<script>window.open('index.php', '_self')</script>";
+      if (isset($_COOKIE['SNID'])) {
+      DB::query('DELETE FROM users_login WHERE tokens =:token', array(':token'=>sha1($_COOKIE['SNID'])));
+        echo "<script>window.open('index.php', '_self')</script>";
+      }
+      setcookie('SNID', '1' , time()-3600);
+      setcookie('SNID_', '1' , time()-3600);
+      }
+      ?>
+
       <!-- toggle switch for light and dark theme -->
       <div class="mobile-position">
         <nav class="navigation">
