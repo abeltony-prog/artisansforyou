@@ -66,9 +66,9 @@ if (Login::isLoggedIn()) {
             <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">State</th>
       <th scope="col">City</th>
+      <th scope="col">Option</th>
     </tr>
   </thead>
   <tbody>
@@ -77,9 +77,11 @@ if (Login::isLoggedIn()) {
     foreach ($cities as $city) {
       ?>
       <tr>
-        <td><?php echo $city['id'] ?></td>
         <td><?php echo $city['state'] ?></td>
         <td><?php echo $city['city'] ?></td>
+        <td>
+          <a class="btn btn-danger" href="delete.php?id=<?php echo $city['id'] ?>"><i class="icon_trash"></i> Remove</a>
+        </td>
       </tr>
       <?php
     }
