@@ -66,18 +66,19 @@ if (Login::isLoggedIn()) {
             <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Categories</th>
+      <th scope="col">Option</th>
+
     </tr>
   </thead>
   <tbody>
     <?php
-    $categories = DB::query('SELECT * FROM categories');
+    $categories = DB::query('SELECT * FROM categories ORDER BY id DESC');
     foreach ($categories as $cate) {
       ?>
       <tr>
-        <td><?php echo $cate['id'] ?></td>
         <td><?php echo $cate['category'] ?></td>
+        <td><a class="btn btn-danger" href="catedelete.php?category_id=<?php echo $cate['id'] ?>"><i class="icon_trash"></i> Remove </a> </td>
       </tr>
       <?php
     }
