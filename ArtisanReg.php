@@ -49,6 +49,17 @@
           }
         }
            ?>
+           <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+               <div class="modal-content">
+                 <div class="modal-body">
+                   <div class="row">
+                     <object width="100%" height="540px" data="Artisansforyou T&C updated.pdf"></object>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
           <div class="col-md-10 py-5">
             <b><h3>Signup</h3></b>
             <form action="" method="post">
@@ -56,7 +67,11 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="fname">Full Names</label>
-                    <input type="text" name="name" class="form-control" placeholder="e.g. John Kant" id="fname" required>
+                    <input type="text" name="name" class="form-control" placeholder="e.g. John Kant" id="fname" value="<?php
+                        if (isset($_POST['name'])) {
+                          echo $_POST['name'];
+                        }
+                     ?>" required>
                   </div>
                 </div>
               </div>
@@ -64,13 +79,21 @@
                 <div class="col-md-6">
                   <div class="form-group first">
                     <label for="email">Email Address</label>
-                    <input type="email" name="email" class="form-control" placeholder="e.g. john@your-domain.com" id="email" required>
+                    <input type="email" name="email" class="form-control" value="<?php
+                        if (isset($_POST['email'])) {
+                          echo $_POST['email'];
+                        }
+                     ?>" placeholder="e.g. john@your-domain.com" id="email" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group first">
                     <label for="lname">Phone Number</label>
-                    <input type="text" name="telephone" class="form-control" placeholder="+00 0000 000 0000" required>
+                    <input type="text" name="telephone" value="<?php
+                        if (isset($_POST['telephone'])) {
+                          echo $_POST['telephone'];
+                        }
+                     ?>" class="form-control" placeholder="+00 0000 000 0000" required>
                   </div>
                 </div>
               </div>
@@ -79,7 +102,16 @@
                   <div class="form-group last mb-3">
                     <label for="password">Gender</label>
                     <select class="form-control" name="gender" required>
-                      <option value="">Select Gender</option>
+                      <?php
+                          if (isset($_POST['gender'])) {
+
+                            ?>
+                            <option value="<?php echo $_POST['gender']; ?>"><?php echo $_POST['gender'];?></option>
+
+                            <?php
+                          }
+                       ?>
+                       <option value="">Select Gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                     </select>
@@ -89,11 +121,20 @@
                   <div class="form-group last mb-3">
                     <label for="password">Type of Work</label>
                     <select class="form-control" name="category" required>
-                      <option value="">Select who you are</option>
+                      <?php
+                          if (isset($_POST['category'])) {
+                            $allcat = DB::query('SELECT category FROM categories WHERE id=:id', array(':id'=>$_POST['category']))[0]['category'];
+                            ?>
+                            <option value="<?php echo $_POST['category'] ?>"><?php   echo $allcat ?></option>
+                            <?php
+                          }
+                       ?>
+                      <option value="">Select Work</option>
                       <?php
                       $allcategories = DB::query('SELECT * FROM categories');
                       foreach ($allcategories as $category) {
                         ?>
+
                         <option value="<?php echo $category['id'] ?>"><?php echo $category['category'] ?></option>
                         <?php
                       }
@@ -107,7 +148,7 @@
 
                   <div class="form-group last mb-3">
                     <label for="re-password">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Your Password" id="re-password" required>
+                    <input type="password" name="password" class="form-control" value="" placeholder="Your Password" id="re-password" required>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -121,7 +162,7 @@
 
               <div class="d-flex mb-5 mt-4 align-items-center">
                 <div class="d-flex align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Creating an account means you're okay with our <a href="#">Terms and Conditions</a> and our <a href="#">Privacy Policy</a>.</span>
+                  <label class="control control--checkbox mb-0"><span class="caption">Creating an account means you're okay with our <a href="#" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a> and our <a data-toggle="modal" data-target="#termsModal" href="#">Privacy Policy</a>.</span>
                   <input type="checkbox" required/>
                   <div class="control__indicator"></div>
                 </label>

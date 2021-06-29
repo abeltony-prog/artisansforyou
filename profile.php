@@ -77,18 +77,34 @@
                           <div class="modal-body">
                               <form class="row col-md-12" action="" method="post">
                                 <div class="form-group col-md-10">
-                                    <textarea class="col-md-12" name="msg" rows="4" cols=40 placeholder="Send Message" ></textarea>
+                                    <textarea class="col-md-12" name="message" rows="4" cols=40 placeholder="Send Message" ></textarea>
                                 </div>
                                 <div class="form-group col-md-2">
-                                  <button class="btn btn-outline-primary col-md-12" type="submit" name="send"><i class="fa fa-send"></i></button>
+                                     <button class="btn btn-outline-primary col-md-12" type="submit" name="send"><i class="fa fa-send"></i></button>
                                 </div>
                               </form>
-                              <?php
+                                                            <?php
                                 if (isset($_POST['send'])) {
                                   $msg = "You Have a New Message";
                                   $user = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
                                   DB::query('INSERT INTO msg VALUES(\'\',:msg,:artisan_id,:users_id,NOW())', array(':msg'=>$msg,':artisan_id'=>$_GET['artisan_id'],':users_id'=>$user));
-                                  echo "<script>window.open('mail_sms.php', '_self')</script>";
+                                                                                $users = DB::query('SELECT * FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()));
+                                         foreach ($users as $user) {
+                                    $name = $user['username'];
+                                    $email= $user['email'];
+                                    $message= $_POST['message'];
+                                    $to = $profile['email'];
+                                    $subject = "Mail From ".$name." Artisans For You Client";
+                                    $txt = $message."\r\n\r\n\r\n Email: ".$email;
+                                    $headers = "From: noreply@artisansforyou.com " . "\r\n" .
+                                    "CC: ".$user['email']."";
+                                    if($email!=NULL){
+                                        mail($to,$subject,$txt,$headers);
+                                    }
+                                    //redirect
+                                    header("Location:index.php");
+                                      }
+
                                 }
                                ?>
                           </div>
@@ -240,4 +256,3 @@
         <script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                               
