@@ -70,7 +70,7 @@
                   </div>
                 </div>
               </div>
-              <a href="UserReg.php">Don't have an account?</a><br>
+              <p><a href="userforgot.php">Forgot Password?</a> / <a href="UserReg.php">Don't have an account?</a><br></p>
               <input type="submit" class="btn btn-primary" name="signin" value="Login">
             </form>
             </div>
