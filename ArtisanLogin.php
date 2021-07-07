@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="signinAssets/css/style.css">
 
-    <title>Sign Up | Artisan For you</title>
+    <title>Sign in | Artisan For you</title>
   </head>
   <style media="screen">
     body{
@@ -77,7 +77,7 @@
                   </div>
                 </div>
               </div>
-              <a href="ArtisanReg.php">Don't have an account?</a><br>
+              <p><a href="Artisanforgot.php">Forgot Password?</a> / <a href="ArtisanReg.php">Don't have an account?</a><br></p>
               <input type="submit" class="btn btn-primary" name="signin" value="Login">
             </form>
             </div>
