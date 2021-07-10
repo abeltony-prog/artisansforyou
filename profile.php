@@ -281,27 +281,31 @@
                                  var ratedIndex = -1;
                                  $(document).ready(function () {
                                    resetStarColors();
+
+                                   if (localStorage.getItem('ratedIndex') != null)
+                                        setStars(parseInt(localStorage.getItem('ratedIndex')));
+                                        
                                    $('.fa-star').on('click', function () {
                                      ratedIndex = parseInt($(this).data('index'));
                                      localstorage.setItem('ratedIndex', ratedIndex);
                                    });
                                    $('.fa-star').mouseover(function () {
                                      resetStarColors();
-
-                                     var currentIndex= parseInt($(this).data('index'));
-
-                                     for (var i=0; i <= currentIndex; i++)
-                                      $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                     var currentIndex = parseInt($(this).data('index'));
+                                     setStars(currentIndex)
                                    });
                                    $('.fa-star').mouseleave(function(){
                                      resetStarColors();
                                      if (ratedIndex != -1)
-                                          for (var i=0; i <= ratedIndex; i++)
-                                            $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                        setStars(ratedIndex);
                                    });
                                  });
+                                 function setStars(max) {
+                                   for (var i=0; i <= max; i++)
+                                      $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                 }
                                  function resetStarColors(){
-                                   $('.fa-star').css('color', 'brown');
+                                    $('.fa-star').css('color', 'brown');
                                  }
                                  </script>
         <script defer src="fontawesome/js/all.js"></script> <!--load all styles -->
