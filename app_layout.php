@@ -18,45 +18,37 @@ if (Login::isLoggedIn()) {
         <span class="navbar-toggler-icon fa icon-close fa-times"></span>
         </span>
       </button>
-
+      <?php
+        $users = DB::query('SELECT * FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()));
+        foreach ($users as $user) {
+        ?>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="Myprofile.php">
+              <img width="30" src="assets/images/<?php echo $user['profile'] ?>" alt="Admin" class="rounded-circle" width="150">
+            </a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.php">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="favorite.php">My Favoriet</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Myprofile.php"><i class="fa fa-dashboard"></i> My profile</a>
-          </li>
-
+            <a style="margin-top:10px;margin-left: 250px;" class="btn btn-secondary" href="userlogout.php?users_id=<?php echo $user['id'] ?>"><i class="fa fa-sign-out"></i> Logout</a>
+         </li>
         </ul>
       </div>
-      <?php
-        $users = DB::query('SELECT * FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()));
-        foreach ($users as $user) {
-        ?>
-      <div class="d-lg-block d-none">
-          <span><i class="fa fa-user"></i> <?php echo $user['username'] ?></span>
-      </div>
-
-               <form style="margin-left: 60px;" class="d-lg-block d-none" action="" method="post">
-                  <button class="btn btn-secondary" type="submit" name="logout"><span><i class="fa fa-sign-out"></i></span></button>
-                </form>
                 <?php
       if (!Login::isLoggedIn()) {
       die("<script>window.open('index.php', '_self')</script>");
-      }
-      if (isset($_POST['logout'])) {
-      DB::query('DELETE FROM users_login WHERE user_id =:id', array(':id'=>Login::isLoggedIn()));
-      echo "<script>window.open('index.php', '_self')</script>";
-      if (isset($_COOKIE['SNID'])) {
-      DB::query('DELETE FROM users_login WHERE tokens =:token', array(':token'=>sha1($_COOKIE['SNID'])));
-        echo "<script>window.open('index.php', '_self')</script>";
-      }
-      setcookie('SNID', '1' , time()-3600);
-      setcookie('SNID_', '1' , time()-3600);
       }
       ?>
       <!-- toggle switch for light and dark theme -->

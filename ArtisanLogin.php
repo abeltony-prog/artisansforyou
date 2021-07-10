@@ -7,7 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="signinAssets/fonts/icomoon/style.css">
-
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet">
     <link rel="stylesheet" href="signinAssets/css/owl.carousel.min.css">
 
     <!-- Bootstrap CSS -->
@@ -54,7 +56,7 @@
                   //  echo "<span class='alert alert-warning col-md-6'>Unknown User</span>";
                   }
                 }else {
-                  //echo "<script>alert('Unknown Password')</script>"
+                  echo "<script>alert('Unknown Email , Please Register')</script>";
                   echo "<script>window.open('ArtisanReg.php', '_self')</script>";
                 }
             }
@@ -65,7 +67,7 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="fname">Email address</label>
-                    <input type="email" name="email" class="form-control" placeholder="example@artisansforyou.com" id="fname">
+                    <input type="email" name="email" class="form-control" placeholder="example@artisansforyou.com" id="email">
                   </div>
                 </div>
               </div>
@@ -73,7 +75,8 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="fname">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password" id="fname">
+                    <input type="password" name="password" class="form-control" placeholder="Password" id="password">
+                    <span class="fa fa-eye" ></span>
                   </div>
                 </div>
               </div>

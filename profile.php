@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="fontawesome/css/brands.css" rel="stylesheet">
+<link href="fontawesome/css/solid.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profile | Artisan For You</title>
     <!-- google fonts -->
@@ -13,16 +18,69 @@
     <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
       rel="stylesheet">
       <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
-
+      <script src="jquery/jquery.barrating.min.js" charset="utf-8"></script>
+      <script src="jquery/jquery.barrating.js" charset="utf-8"></script>
     <!-- google fonts -->
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
+    <script defer src="fontawesome/js/brands.js"></script>
+<script defer src="fontawesome/js/solid.js"></script>
+<script defer src="fontawesome/js/fontawesome.js"></script>
+<!--<script type="text/javascript">
+  $(document).ready(function() {
+    $('.rating').barrating({
+      theme: 'fa fa-star',
+      onSelect: function(value,text,event){
+        var el = this;
+        var ed_id = el.$elem.data('id');
+        if (typeof (event) !== 'undefined') {
+          var split_id = el_id.split("_");
+          var postid = split_id[1];
+
+          $.ajax({
+            url: 'rating.php',
+            type : 'post',
+            data: {postid: postid, rating: value},
+            dataType: 'json',
+            success: function(data){
+              var average = data['averageRating'];
+              $('#avgrating_' + postid).text(average);
+            }
+          });
+        }
+      }
+    });
+  });
+</script>-->
+
 </head>
 
 <body>
   <!--header-->
   <?php include('app_layout.php') ?>
   <!-- //header --><br> <br><br><br><br><br><br><br>
+  <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row col-md-12">
+            <div align="center" class="form-group">
+              <i class="fa fa-star fa-2x" data-index="0"></i>
+              <i class="fa fa-star fa-2x" data-index="1"></i>
+              <i class="fa fa-star fa-2x" data-index="2"></i>
+              <i class="fa fa-star fa-2x" data-index="3"></i>
+              <i class="fa fa-star fa-2x" data-index="4"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="container">
         <div class="main-body">
               <div class="row gutters-sm">
@@ -49,7 +107,7 @@
                             }
                              ?>
                              <form class="" action="" method="post">
-                                <button type="submit" name="rate" class="btn btn-outline-secondary"><span><i class="fa fa-star-o"></i> Rate</span></button>
+                              <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#rateModal" href="#"><span><i class="fa fa-star-o"></i> Rate</span></a>
                                <a class="btn btn-outline-primary" data-toggle="modal" data-target="#chatModal" href="#"><i class="fa fa-send"></i> Message</a>
 
                                <?php
@@ -215,6 +273,38 @@
                                   <?php
                                 }
                                  ?>
+                                 <script
+                                   src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                                   crossorigin="anonymous"></script>
+                                 <script type="text/javascript">
+                                 var ratedIndex = -1;
+                                 $(document).ready(function () {
+                                   resetStarColors();
+                                   $('.fa-star').on('click', function () {
+                                     ratedIndex = parseInt($(this).data('index'));
+                                     localstorage.setItem('ratedIndex', ratedIndex);
+                                   });
+                                   $('.fa-star').mouseover(function () {
+                                     resetStarColors();
+
+                                     var currentIndex= parseInt($(this).data('index'));
+
+                                     for (var i=0; i <= currentIndex; i++)
+                                      $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                   });
+                                   $('.fa-star').mouseleave(function(){
+                                     resetStarColors();
+                                     if (ratedIndex != -1)
+                                          for (var i=0; i <= ratedIndex; i++)
+                                            $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                   });
+                                 });
+                                 function resetStarColors(){
+                                   $('.fa-star').css('color', 'brown');
+                                 }
+                                 </script>
+        <script defer src="fontawesome/js/all.js"></script> <!--load all styles -->
         <script src="assets/js/jquery-3.3.1.min.js"></script>
         <script src="assets/js/theme-change.js"></script>
         <!-- stats number counter-->
