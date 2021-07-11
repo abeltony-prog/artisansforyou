@@ -81,6 +81,22 @@
       </div>
     </div>
   </div>
+  <?php
+   if (isset($_POST['save'])) {
+    $uID = $_POST['uID'];
+    $ratedIndex = $_POST['ratedIndex'];
+    $ratedIndex++;
+    if (!$uID) {
+        DB::query("INSERT INTO tony VALUES(\'\', :rate)", array(':rate'=>$ratedIndex));
+        $sql = DB::query("SELECT id FROM tony ORDER BY id DESC LIMIT 1")[0]['id'];
+        $uData = $sql;
+        $uID = $uData['id'];
+      }else {
+        DB::query("UPDATE tony SET rate=:rate WHERE id=:id", array(':rate'=>$ratedIndex,':id'=>$uID));
+        exit(json_encode(array('id'=>$uID)));
+      }
+  }
+   ?>
     <div class="container">
         <div class="main-body">
               <div class="row gutters-sm">
@@ -185,21 +201,7 @@
                       $userid = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
                       DB::query('DELETE FROM favoriet WHERE user_id=:userid AND artisan_id=:artisanid', array(':userid'=>$userid, ':artisanid'=>$profile['id']));
                       echo "<script>window.open('index.php', '_self')</script>";
-                    }elseif (isset($_POST['rate'])) {
-                      if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$profile['id']))) {
-                        $star = 2;
-                        DB::query('INSERT INTO rating VALUES(\'\',:artisan_id,:star)', array(':artisan_id'=>$profile['id'],':star'=>$star));
-                        echo "<span class='col-md-12 col-sm-12 alert alert-success'>Thanks For rating!</span>";
-                      }else {
-                        $ratingartisan = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$profile['id']));
-                        foreach ($ratingartisan as $rate) {
-                          $sum = $rate['star'] + 2;
-                          DB::query('UPDATE rating SET star=:star WHERE artisan_id=:artisanid', array(':star'=>$sum,':artisanid'=>$profile['id']));
-                          echo "<span class='col-md-12 col-sm-12 alert alert-success'>Thanks For rating!</span>";
-                        }
-                      }
-                      }
-
+                    }
                      ?>
                   </div>
                 </div>
@@ -278,16 +280,18 @@
                                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
                                    crossorigin="anonymous"></script>
                                  <script type="text/javascript">
-                                 var ratedIndex = -1;
+                                 var ratedIndex = -1, uID = 0;
+
                                  $(document).ready(function () {
                                    resetStarColors();
 
                                    if (localStorage.getItem('ratedIndex') != null)
                                         setStars(parseInt(localStorage.getItem('ratedIndex')));
-                                        
+
                                    $('.fa-star').on('click', function () {
                                      ratedIndex = parseInt($(this).data('index'));
                                      localstorage.setItem('ratedIndex', ratedIndex);
+                                     saveToTheDB();
                                    });
                                    $('.fa-star').mouseover(function () {
                                      resetStarColors();
@@ -300,12 +304,28 @@
                                         setStars(ratedIndex);
                                    });
                                  });
+
+                                function saveToTheDB() {
+                                  $.ajax({
+                                    url: "index.php",
+                                    method: "POST",
+                                    dataType: "json",
+                                    data: {
+                                        save: 1,
+                                        uID: uID,
+                                        ratedIndex: ratedIndex
+                                    }, success: function (r) {
+                                        uID = r.uid;
+                                    }
+                                  });
+                                }
+
                                  function setStars(max) {
                                    for (var i=0; i <= max; i++)
                                       $('.fa-star:eq('+i+')').css('color', 'yellow');
                                  }
                                  function resetStarColors(){
-                                    $('.fa-star').css('color', 'brown');
+                                    $('.fa-star').css('color', 'gray');
                                  }
                                  </script>
         <script defer src="fontawesome/js/all.js"></script> <!--load all styles -->

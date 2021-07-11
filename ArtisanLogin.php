@@ -5,7 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="fontawesome/css/brands.css" rel="stylesheet">
+<link href="fontawesome/css/solid.css" rel="stylesheet">
+<link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+  rel="stylesheet">
     <link rel="stylesheet" href="signinAssets/fonts/icomoon/style.css">
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -19,10 +25,24 @@
     <link rel="stylesheet" href="signinAssets/css/style.css">
 
     <title>Sign in | Artisan For you</title>
+    <script defer src="fontawesome/js/brands.js"></script>
+<script defer src="fontawesome/js/solid.js"></script>
+<script defer src="fontawesome/js/fontawesome.js"></script>
   </head>
   <style media="screen">
     body{
       overflow-y: hidden;
+    }
+    span{
+      transform: translate(0,-50%);
+      top: 60%;
+      margin-left:450px;
+      position: absolute;
+      cursor: pointer;
+    }
+    .fa{
+      font-size: 20px;
+      color: #7a797e;
     }
   </style>
   <body>
@@ -74,10 +94,11 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group first">
-                    <label for="fname">Password</label>
+                    <label for="fname"><i class="fa fa-users"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" id="password">
-                    <span class="fa fa-eye" ></span>
+                    <span><i aria-hidden="true" onclick="toggle()" id="eye" class="fa fa-eye">show</i></span>
                   </div>
+
                 </div>
               </div>
               <p><a href="Artisanforgot.php">Forgot Password?</a> / <a href="ArtisanReg.php">Don't have an account?</a><br></p>
@@ -93,7 +114,18 @@
   </div>
 
 
-
+  <script type="text/javascript">
+    var state= false;
+    function toggle() {
+      if(state){
+        document.getElementById("password").setAttribute("type", "password");
+        state = false;
+      }else {
+        document.getElementById("password").setAttribute("type", "password");
+        state = true;
+      }
+    }
+  </script>
     <script src="signinAssets/js/jquery-3.3.1.min.js"></script>
     <script src="signinAssets/js/popper.min.js"></script>
     <script src="signinAssets/js/bootstrap.min.js"></script>
