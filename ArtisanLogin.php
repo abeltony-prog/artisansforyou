@@ -72,7 +72,7 @@
                       echo "<span style='color:red' class='col-md-12'>Your account is not Verified, please Check Your email For a verification code</span><hr>";
                     }
                   }else {
-                    echo "<span class='alert alert-danger col-md-12'>Unknown Password</span><hr>";
+                    echo "<span class='alert alert-danger col-md-6'>Unknown Password</span><hr>";
                   //  echo "<span class='alert alert-warning col-md-6'>Unknown User</span>";
                   }
                 }else {

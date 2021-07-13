@@ -127,6 +127,7 @@ setcookie('SNID_', '1' , time()-3600);
           ?>
           <div class="col-12 col-sm-6 col-lg-3 mb-2">
             <img class="w-100" src="assets/gallery/<?php echo $photoes['file'] ?>" data-target="#carouselExample" data-slide-to="0">
+            <a class="pull-right" href="delete_img.php?id=<?php echo $photoes['id'] ?>"><i style="color:red;" class="fa fa-trash"></i> </a>
           </div>
           <?php
         }
