@@ -30,7 +30,7 @@
   <header id="site-header" class="fixed-top">
     <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-        <h1><a class="navbar-brand mr-lg-5" href="index.php">
+        <h1><a class="navbar-brand mr-lg-5" href="ArtisanProfile.php.php">
           <img style="border-radius: 120px;width: 50px;height: 50px;" src="assets/images/<?php echo $artisan['profile'] ?>" alt="">
           </a></h1>
         <!-- if logo is image enable this
@@ -56,11 +56,11 @@
             <li class="nav-item">
               <a class="nav-link" href="ArtisanProfile.php">My Profile</a>
             </li>
+            <li class="nav-item">
+              <a  class="nav-link" href="Artisanlogout.php?artisan_id=<?php echo $artisan['id'] ?>"><i class="fa fa-sign-out"></i> Logout</a>
+            </li>
           </ul>
           <span style="margin-right: 10%;"><strong><?php echo $artisan['name'] ?></strong> </span>
-        </div>
-        <div class="d-lg-block d-none">
-          <a href="#" class="btn btn-secondary"><span><i class="fa fa-sign-out"></i>Logout</span></a>
         </div>
         <!-- toggle switch for light and dark theme -->
         <div class="mobile-position">

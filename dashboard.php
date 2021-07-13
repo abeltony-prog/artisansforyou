@@ -28,7 +28,7 @@
   <header id="site-header" class="fixed-top">
     <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-        <h1><a class="navbar-brand mr-lg-5" href="index.php">
+        <h1><a class="navbar-brand mr-lg-5" href="ArtisanProfile.php">
           <img style="border-radius: 120px;width: 50px;height: 50px;" src="assets/images/<?php echo $artisan['profile'] ?>" alt="">
           </a></h1>
         <!-- if logo is image enable this
@@ -54,27 +54,12 @@
             <li class="nav-item">
               <a class="nav-link" href="ArtisanProfile.php">My Profile</a>
             </li>
+            <li class="nav-item">
+              <a  class="nav-link" href="Artisanlogout.php?artisan_id=<?php echo $artisan['id'] ?>"><i class="fa fa-sign-out"></i> Logout</a>
+            </li>
           </ul>
           <span style="margin-right: 10%;"><strong><?php echo $artisan['name'] ?></strong> </span>
         </div>
-          <form class="d-lg-block d-none" action="" method="post">
-            <button class="btn btn-secondary" type="submit" name="logout"><span><i class="fa fa-sign-out"></i>Logout</span></button>
-          </form>
-          <?php
-if (!Login::isLoggedIn()) {
-die("<script>window.open('ArtisanLogin.php', '_self')</script>");
-}
-if (isset($_POST['logout'])) {
-DB::query('DELETE FROM artisan_login WHERE artisan_id =:id', array(':id'=>Login::isLoggedIn()));
-echo "<script>window.open('ArtisanLogin.php', '_self')</script>";
-if (isset($_COOKIE['SNID'])) {
-DB::query('DELETE FROM artisan_login WHERE tokens =:token', array(':token'=>sha1($_COOKIE['SNID'])));
-  echo "<script>window.open('ArtisanLogin.php', '_self')</script>";
-}
-setcookie('SNID', '1' , time()-3600);
-setcookie('SNID_', '1' , time()-3600);
-}
-?>
         <!-- toggle switch for light and dark theme -->
         <div class="mobile-position">
           <nav class="navigation">
