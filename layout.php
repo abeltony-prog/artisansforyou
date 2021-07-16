@@ -104,13 +104,10 @@ if (Login::isLoggedIn()) {
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-
+          <li class="nav-item">
+              <a class="nav-link  " data-toggle="modal" data-target="#loginModal" href="contact.php">Sign in</a>
+        </li>
         </ul>
-      </div>
-      <div class="d-lg-block d-none">
-        <button type="button" class="btn btn-style btn-secondary" data-toggle="modal" data-target="#loginModal">
-         Get Started
-        </button>
       </div>
       <!-- toggle switch for light and dark theme -->
       <div class="mobile-position">

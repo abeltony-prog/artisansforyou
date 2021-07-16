@@ -20,6 +20,7 @@
       <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
       <script src="jquery/jquery.barrating.min.js" charset="utf-8"></script>
       <script src="jquery/jquery.barrating.js" charset="utf-8"></script>
+      <link rel="stylesheet" href="ratingstyle.css">
     <!-- google fonts -->
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -69,12 +70,17 @@
         </div>
         <div class="modal-body">
           <div class="row col-md-12">
-            <div align="center" class="form-group">
-              <i class="fa fa-star fa-2x" data-index="0"></i>
-              <i class="fa fa-star fa-2x" data-index="1"></i>
-              <i class="fa fa-star fa-2x" data-index="2"></i>
-              <i class="fa fa-star fa-2x" data-index="3"></i>
-              <i class="fa fa-star fa-2x" data-index="4"></i>
+            <div align="center" class="star-widget">
+              <input type="radio" name="rate" id="rate-1" value="">
+              <label for="rate-1" class="fa fa-star fa-2x"></label>
+              <input type="radio" name="rate" id="rate-2" value="">
+              <label for="rate-2" class="fa fa-star fa-2x"></label>
+              <input type="radio" name="rate" id="rate-3" value="">
+              <label for="rate-3" class="fa fa-star fa-2x"></label>
+              <input type="radio" name="rate" id="rate-4" value="">
+              <label for="rate-4" class="fa fa-star fa-2x"></label>
+              <input type="radio" name="rate" id="rate-5" value="">
+              <label for="rate-5" class="fa fa-star fa-2x"></label>
             </div>
           </div>
         </div>
@@ -275,59 +281,6 @@
                                   <?php
                                 }
                                  ?>
-                                 <script
-                                   src="https://code.jquery.com/jquery-3.6.0.min.js"
-                                   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-                                   crossorigin="anonymous"></script>
-                                 <script type="text/javascript">
-                                 var ratedIndex = -1, uID = 0;
-
-                                 $(document).ready(function () {
-                                   resetStarColors();
-
-                                   if (localStorage.getItem('ratedIndex') != null)
-                                        setStars(parseInt(localStorage.getItem('ratedIndex')));
-
-                                   $('.fa-star').on('click', function () {
-                                     ratedIndex = parseInt($(this).data('index'));
-                                     localstorage.setItem('ratedIndex', ratedIndex);
-                                     saveToTheDB();
-                                   });
-                                   $('.fa-star').mouseover(function () {
-                                     resetStarColors();
-                                     var currentIndex = parseInt($(this).data('index'));
-                                     setStars(currentIndex)
-                                   });
-                                   $('.fa-star').mouseleave(function(){
-                                     resetStarColors();
-                                     if (ratedIndex != -1)
-                                        setStars(ratedIndex);
-                                   });
-                                 });
-
-                                function saveToTheDB() {
-                                  $.ajax({
-                                    url: "index.php",
-                                    method: "POST",
-                                    dataType: "json",
-                                    data: {
-                                        save: 1,
-                                        uID: uID,
-                                        ratedIndex: ratedIndex
-                                    }, success: function (r) {
-                                        uID = r.uid;
-                                    }
-                                  });
-                                }
-
-                                 function setStars(max) {
-                                   for (var i=0; i <= max; i++)
-                                      $('.fa-star:eq('+i+')').css('color', 'yellow');
-                                 }
-                                 function resetStarColors(){
-                                    $('.fa-star').css('color', 'gray');
-                                 }
-                                 </script>
         <script defer src="fontawesome/js/all.js"></script> <!--load all styles -->
         <script src="assets/js/jquery-3.3.1.min.js"></script>
         <script src="assets/js/theme-change.js"></script>

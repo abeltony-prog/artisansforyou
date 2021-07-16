@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Artisan For You</title>
+  <title>Artisans For You</title>
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -79,6 +79,24 @@
               <div class="form-group col-md-6">
                 <a href="UserLogin.php" class="btn btn-outline-primary col-md-12"><span><i class="fa fa-users"></i></span> User</a>
               </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/grids-->
+  <!-- //banner-slider-->
+  <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <object width="100%" height="540px" data="Artisansforyou T&C updated.pdf"></object>
           </div>
         </div>
       </div>
@@ -257,11 +275,12 @@
           </div>
           <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
             <div class="columns text-lg-left text-center">
-              <p>&copy; 2021 Artisans For You. All rights reserved.Developed by <a href="https://umbrellagrp.rw/" target="_blank">
-                Umbrella
-                </a>
-              </p>
-            </div>
+                                         <a href="#" data-toggle="modal" data-target="#newModal">
+                                           <p>Terms & Conditions| Privacy Policy | Cookies </p>
+                                         </a>
+                         <p>&copy; 2021 Digital KAM Services LTD. All rights reserved
+                         </p>
+                       </div>
             <div class="columns-2 mt-lg-0 mt-3">
               <ul class="social">
                 <li><a href="https://www.linkedin.com/company/umbrella-innovators/"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
