@@ -12,7 +12,7 @@
 <link href="fontawesome/css/brands.css" rel="stylesheet">
 <link href="fontawesome/css/solid.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Profile | Artisan For You</title>
+    <title>Profile | Artisans For You</title>
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -24,9 +24,6 @@
     <!-- google fonts -->
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
-    <script defer src="fontawesome/js/brands.js"></script>
-<script defer src="fontawesome/js/solid.js"></script>
-<script defer src="fontawesome/js/fontawesome.js"></script>
 <!--<script type="text/javascript">
   $(document).ready(function() {
     $('.rating').barrating({
@@ -68,41 +65,30 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <?php
+        $artisanprofile = DB::query('SELECT * FROM artisans WHERE id=:artisan_id', array(':artisan_id'=>$_GET['artisan_id']));
+        foreach ($artisanprofile as $profile) {
+          ?>
         <div class="modal-body">
           <div class="row col-md-12">
-            <div align="center" class="star-widget">
-              <input type="radio" name="rate" id="rate-1" value="">
-              <label for="rate-1" class="fa fa-star fa-2x"></label>
-              <input type="radio" name="rate" id="rate-2" value="">
-              <label for="rate-2" class="fa fa-star fa-2x"></label>
-              <input type="radio" name="rate" id="rate-3" value="">
-              <label for="rate-3" class="fa fa-star fa-2x"></label>
-              <input type="radio" name="rate" id="rate-4" value="">
-              <label for="rate-4" class="fa fa-star fa-2x"></label>
-              <input type="radio" name="rate" id="rate-5" value="">
-              <label for="rate-5" class="fa fa-star fa-2x"></label>
-            </div>
+              <form align="center" class="star-widget" action="" method="post">
+                <input type="radio" name="rate" id="rate-5" value="5">
+                <label for="rate-5" class="fa fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-4" value="4">
+                <label for="rate-4" class="fa fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-3" value="3">
+                <label for="rate-3" class="fa fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-2" value="2">
+                <label for="rate-2" class="fa fa-star fa-2x"></label>
+                <input type="radio" name="rate" id="rate-1" value="1">
+                <label for="rate-1" class="fa fa-star fa-2x"></label><br>
+                <button class="btn btn-outline-primary" type="submit" name="save">Conferm</button>
+              </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <?php
-   if (isset($_POST['save'])) {
-    $uID = $_POST['uID'];
-    $ratedIndex = $_POST['ratedIndex'];
-    $ratedIndex++;
-    if (!$uID) {
-        DB::query("INSERT INTO tony VALUES(\'\', :rate)", array(':rate'=>$ratedIndex));
-        $sql = DB::query("SELECT id FROM tony ORDER BY id DESC LIMIT 1")[0]['id'];
-        $uData = $sql;
-        $uID = $uData['id'];
-      }else {
-        DB::query("UPDATE tony SET rate=:rate WHERE id=:id", array(':rate'=>$ratedIndex,':id'=>$uID));
-        exit(json_encode(array('id'=>$uID)));
-      }
-  }
-   ?>
     <div class="container">
         <div class="main-body">
               <div class="row gutters-sm">
@@ -111,14 +97,24 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
-                        <?php
-                        $artisanprofile = DB::query('SELECT * FROM artisans WHERE id=:artisan_id', array(':artisan_id'=>$_GET['artisan_id']));
-                        foreach ($artisanprofile as $profile) {
-                          ?>
                           <img src="assets/images/<?php echo $profile['profile'] ?>" alt="Admin" class="rounded-circle" width="150">
                           <div class="mt-3">
-                            <h4><?php echo $profile['name'] ?></h4>
+                            <h4><?php echo $profile['name'];
+                            $allrates = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$profile['id']));
+                            foreach ($allrates as $rates) {
+                              if ( 50 >= $rates['star'] ) {
+                              }elseif ( 140 >= $rates['star']) {
+                                ?> ~ <span><img width="30" src="assets/rate/bronze.png" alt=""> </span><?php
+                              }elseif ( 300 >= $rates['star']) {
+                                ?> ~ <span><img width="30" src="assets/rate/gold.png" alt=""> </span><?php
+                              }else {
+                                ?> ~ <span><img width="30" src="assets/rate/silver.png" alt=""> </span><?php
+                              }
+                            ?>  </h4>
+                            <span>Rating average:<?php echo $rates['star'] ?></span>
                             <?php
+                          }
+
                             $categories = DB::query('SELECT * FROM categories WHERE id=:category', array(':category'=>$profile['category_id']));
                             foreach ($categories as $one) {
                             ?>
@@ -128,6 +124,24 @@
                             <?php
                             }
                              ?>
+                             <?php
+                              if (isset($_POST['save'])) {
+                               $uID = $profile['id'];
+                               $ratedIndex = $_POST['rate'];
+                               if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID))) {
+                                 DB::query('INSERT INTO rating VALUES(\'\', :artisan_id,:star)', array(':artisan_id'=>$uID,':star'=>$ratedIndex));
+                                 echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ". $profile['name']."</span><br><br>";
+                               }else {
+                                 $rates = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID));
+                                 foreach ($rates as $key) {
+                                   $rate1 = $key['star'];
+                                   $rateSum = $key['star'] + $ratedIndex;
+                                   DB::query('UPDATE rating SET star=:ratings WHERE artisan_id=:artisanid', array('artisanid'=>$uID, ':ratings'=>$rateSum));
+                                   echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ".$profile['name']."</span><br><br>";
+                                 }
+                               }
+                             }
+                              ?>
                              <form class="" action="" method="post">
                               <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#rateModal" href="#"><span><i class="fa fa-star-o"></i> Rate</span></a>
                                <a class="btn btn-outline-primary" data-toggle="modal" data-target="#chatModal" href="#"><i class="fa fa-send"></i> Message</a>
@@ -199,9 +213,9 @@
                         $artisan_id = $profile['id'];
                         $user_id = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];
                         DB::query('INSERT INTO favoriet VALUES(\'\', :artisan_id, :user_id)', array(':artisan_id'=>$artisan_id, ':user_id'=>$user_id));
-                        echo "<span class='col-md-12 col-sm-12 alert alert-success'>Thanks! For Adding ".$profile['name']." To your Favorite!!</span>";
+                        echo "<span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for adding ".$profile['name']." to your favourite!!</span>";
                       }else {
-                        echo "<span class='col-md-12 col-sm-12 alert alert-warning'>Artisan <strong>".$profile['name']."</strong> is already in your Favorite!</span>";
+                        echo "<span class='col-md-12 col-sm-12 alert alert-warning'>Artisan <strong>".$profile['name']."</strong> is already in your favourite!</span>";
                       }
                     }elseif (isset($_POST['remove'])) {
                       $userid = DB::query('SELECT id FROM users WHERE id=:id', array(':id'=>Login::isLoggedIn()))[0]['id'];

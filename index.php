@@ -200,36 +200,38 @@
         <div class="testimonial-width">
           <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
             <?php
-              $allcomment = DB::query('SELECT * FROM comment ORDER BY id DESC Limit 5');
-              foreach ($allcomment as $comment) {
-                ?>
-                <div class="item">
-                  <div class="testimonial-content">
-                    <div class="testimonial">
-                      <blockquote>
-                        <span class="fa fa-quote-left" aria-hidden="true"></span>
-                        <?php echo $comment['comment'] ?>
-                      </blockquote>
-                      <?php
-                      $artisandetails = DB::query('SELECT * FROM artisans WHERE id=:artisanid', array(':artisanid'=>$comment['artisan_id']));
-                      foreach ($artisandetails as $detail) {
-                        ?>
-                        <div class="testi-des">
-                          <div class="test-img"><img src="assets/images/<?php echo $detail['profile'] ?>" class="img-fluid" alt="client-img">
-                          </div>
-                          <div class="peopl align-self">
-                            <h3><?php echo $detail['name'] ?></h3>
-                            <p class="indentity">Example City</p>
-                          </div>
-                        </div>
+            $allcomment = DB::query('SELECT * FROM comment ORDER BY id DESC Limit 5');
+            foreach ($allcomment as $comment) {
+              if ($comment['permit'] != 0) {
+                  ?>
+                  <div class="item">
+                    <div class="testimonial-content">
+                      <div class="testimonial">
+                        <blockquote>
+                          <span class="fa fa-quote-left" aria-hidden="true"></span>
+                          <?php echo $comment['comment'] ?>
+                        </blockquote>
                         <?php
-                      }
-                       ?>
+                        $artisandetails = DB::query('SELECT * FROM artisans WHERE id=:artisanid', array(':artisanid'=>$comment['artisan_id']));
+                        foreach ($artisandetails as $detail) {
+                          ?>
+                          <div class="testi-des">
+                            <div class="test-img"><img src="assets/images/<?php echo $detail['profile'] ?>" class="img-fluid" alt="client-img">
+                            </div>
+                            <div class="peopl align-self">
+                              <h3><?php echo $detail['name'] ?></h3>
+                            </div>
+                          </div>
+                          <?php
+                        }
+                         ?>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <?php
+                  <?php
+                }
               }
+
              ?>
           </div>
         </div>

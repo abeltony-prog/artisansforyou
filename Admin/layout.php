@@ -5,7 +5,7 @@
       </div>
 
       <!--logo start-->
-      <a href="index.php" class="logo">Artisan For<span class="lite"> You</span></a>
+      <a href="index.php" class="logo">Artisans For<span class="lite"> You</span></a>
       <!--logo end-->
 
       <div class="nav search-row" id="top_menu">
@@ -81,15 +81,32 @@ if (isset($_POST['logout'])) {
                       <span>Blog Post</span>
                   </a>
       </li>
+      <li>
+        <a class="" href="comments.php">
+                      <i class="icon_mail"></i>
+                      <span>Comments</span>
+                  </a>
+      </li>
       <li class="sub-menu">
         <a href="javascript:;" class="">
                       <i class="fa fa-cog"></i>
-                      <span>More</span>
+                      <span>Categories</span>
                       <span class="menu-arrow arrow_carrot-right"></span>
                   </a>
         <ul class="sub">
           <li><a class="" href="category_list.php">Category List</a></li>
           <li><a class="" href="addcate.php">Add New</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:;" class="">
+                      <i class="icon_pin"></i>
+                      <span>Cities</span>
+                      <span class="menu-arrow arrow_carrot-right"></span>
+                  </a>
+        <ul class="sub">
+          <li><a class="" href="cityList.php">City List</a></li>
+          <li><a class="" href="addcity.php">Add Cities</a></li>
         </ul>
       </li>
       <li class="sub-menu">
@@ -100,24 +117,14 @@ if (isset($_POST['logout'])) {
                   </a>
         <ul class="sub">
           <?php
-          $categories = DB::query('SELECT * FROM categories ORDER BY id DESC');
+          $categories = DB::query('SELECT * FROM categories ORDER BY id DESC LIMIT 5');
           foreach ($categories as $category) {
             ?>
             <li><a class="" href="category_artisan.php?category_id=<?php echo $category['id'] ?>"><?php echo $category['category'] ?></a></li>
             <?php
           }
            ?>
-        </ul>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:;" class="">
-                      <i class="icon_pin"></i>
-                      <span>More</span>
-                      <span class="menu-arrow arrow_carrot-right"></span>
-                  </a>
-        <ul class="sub">
-          <li><a class="" href="cityList.php">Cities</a></li>
-          <li><a class="" href="addcity.php">Add Cities</a></li>
+           <a href="artisancategories.php">See all</a>
         </ul>
       </li>
 

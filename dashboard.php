@@ -133,8 +133,10 @@
        if (isset($_POST['commit'])) {
          $artisan_id = $artisan['id'];
          $comment = $_POST['comment'];
-         DB::query('INSERT INTO comment VALUES(\'\',:artisan_id,:comment)', array(':artisan_id'=>$artisan_id,':comment'=>$comment));
-         echo "<script>window.open('index.php', '_self')</script>";
+         $permit = "0";
+         DB::query('INSERT INTO comment VALUES(\'\',:artisan_id,:comment,NOW(),:permit)', array(':artisan_id'=>$artisan_id,':comment'=>$comment,':permit'=>$permit));
+         echo "<script>alert('Thank for leaving a comment !!')</script>";
+         echo "<script>window.open('dashboard.php', '_self')</script>";
        }
         ?>
      </div>

@@ -24,7 +24,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="signinAssets/css/style.css">
 
-    <title>Sign in | Artisan For you</title>
+    <title>Sign in | Artisans For you</title>
     <script defer src="fontawesome/js/brands.js"></script>
 <script defer src="fontawesome/js/solid.js"></script>
 <script defer src="fontawesome/js/fontawesome.js"></script>
