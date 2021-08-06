@@ -30,7 +30,7 @@
   <header id="site-header" class="fixed-top">
     <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-        <h1><a class="navbar-brand mr-lg-5" href="ArtisanProfile.php.php">
+        <h1><a class="navbar-brand mr-lg-5" href="ArtisanProfile.php">
           <img style="border-radius: 120px;width: 50px;height: 50px;" src="assets/images/<?php echo $artisan['profile'] ?>" alt="">
           </a></h1>
         <!-- if logo is image enable this
@@ -157,6 +157,7 @@
                       </div>
                     </div>
                     <hr>
+                    <a href="ArtisanProfile.php">Cancle</a>
                     <input class="btn btn-primary pull-right" type="submit" name="update" value="Update">
                     </div>
                 </div>

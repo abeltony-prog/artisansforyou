@@ -42,8 +42,8 @@ if (Login::isLoggedIn()) {
               <a class="nav-link" href="favorite.php">My Favoriet</a>
             </li>
             <li class="nav-item">
-              <a style="margin-top:10px;margin-left: 250px;" class="btn btn-secondary" href="userlogout.php?users_id=<?php echo $user['id'] ?>"><i class="fa fa-sign-out"></i> Logout</a>
-           </li>
+              <a class="nav-link" href="userlogout.php?users_id=<?php echo $user['id'] ?>"><i class="fa fa-sign-out"></i> Logout</a>
+            </li>
           </ul>
         </div>
                   <?php
@@ -105,7 +105,7 @@ if (Login::isLoggedIn()) {
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link  " data-toggle="modal" data-target="#loginModal" href="contact.php">Sign in</a>
+              <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="">Sign in</a>
         </li>
         </ul>
       </div>

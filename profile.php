@@ -71,7 +71,7 @@
           ?>
         <div class="modal-body">
           <div class="row col-md-12">
-              <form align="center" class="star-widget" action="" method="post">
+              <form align="center" class="starwidge" action="" method="post">
                 <input type="radio" name="rate" id="rate-5" value="5">
                 <label for="rate-5" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-4" value="4">
@@ -82,7 +82,7 @@
                 <label for="rate-2" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-1" value="1">
                 <label for="rate-1" class="fa fa-star fa-2x"></label><br>
-                <button class="btn btn-outline-primary" type="submit" name="save">Conferm</button>
+                <button class="btn btn-outline-primary" type="submit" name="save">confirm</button>
               </form>
           </div>
         </div>
@@ -92,7 +92,6 @@
     <div class="container">
         <div class="main-body">
               <div class="row gutters-sm">
-
                 <div class="col-md-4 mb-3">
                   <div class="card">
                     <div class="card-body">
@@ -110,8 +109,9 @@
                               }else {
                                 ?> ~ <span><img width="30" src="assets/rate/silver.png" alt=""> </span><?php
                               }
+                              $avarage =  $rates['star'] / 5 ;
                             ?>  </h4>
-                            <span>Rating average:<?php echo $rates['star'] ?></span>
+                            <span>Rating average: <?php echo $avarage ?></span>
                             <?php
                           }
 

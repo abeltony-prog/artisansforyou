@@ -1,12 +1,13 @@
-.star-widget input{
+.starwidge input{
   display: none;
 }
 
-.star-widget label{
+.starwidge label{
   align-items: center;
   color: #444;
   padding: 5px;
   transition: all 0.2s ease;
+  float: right;
 }
 
 input:not(:checked) ~ label:hover,

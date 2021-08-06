@@ -70,11 +70,11 @@ div.content {
                   <div class="form-group mt-2">
                     I agree to all term<input type="checkbox" name="" value="" required>
                   </div>
-                  <button type="submit" name="conferm" class="btn btn-primary mt-2">conferm</button>
+                  <button type="submit" name="confirm" class="btn btn-primary mt-2">confirm</button>
                   <hr />
                 </form>
                 <?php
-                if (isset($_POST['conferm'])) {
+                if (isset($_POST['confirm'])) {
                   $artisan_id = $artisan['id'];
                   $nationality = $_POST['nationality'];
                   $target = "assets/id/".basename($_FILES['file']['name']);
