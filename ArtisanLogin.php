@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <link href="fontawesome/css/all.css" rel="stylesheet">
     <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
-<link href="fontawesome/css/brands.css" rel="stylesheet">
+    <link href="fontawesome/css/brands.css" rel="stylesheet">
 <link href="fontawesome/css/solid.css" rel="stylesheet">
 <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -63,7 +63,7 @@
                       $cstrong = True;
                       $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
                       $artisan_id = DB::query('SELECT id FROM artisans WHERE email=:email', array(':email'=>$email))[0]['id'];
-                      DB::query('INSERT INTO artisan_login VALUES(\'\', :artisan_id,:tokens)', array(':tokens'=>sha1($token),':artisan_id'=>$artisan_id));
+                      DB::query('INSERT INTO artisan_login VALUES()', array(':tokens'=>sha1($token),':artisan_id'=>$artisan_id));
                       setcookie("SNID", $token, time() + 60 * 60 * 24 * 7, '/', NULL, NULL, TRUE );
                       setcookie("SNID_", '1', time() + 60 * 60 * 24 * 3, '/', NULL, NULL, TRUE );
                       echo "<script>window.open('artisanProfile.php', '_self')</script>";
@@ -96,7 +96,7 @@
                   <div class="form-group first">
                     <label for="fname"><i class="fa fa-users"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" id="password">
-                    <span><i aria-hidden="true" onclick="toggle()" id="eye" class="fa fa-eye">show</i></span>
+                    <span aria-hidden="true" onclick="show()"><i class="fa fa-eye"></i>Show</span>
                   </div>
 
                 </div>
@@ -109,20 +109,19 @@
         </div>
       </div>
     </div>
-
-
   </div>
-
-
   <script type="text/javascript">
-    var state= false;
-    function toggle() {
-      if(state){
-        document.getElementById("password").setAttribute("type", "password");
-        state = false;
+    function show() {
+      var password = document.getElementById('password');
+      var icon = document.querySelector('.fas');
+      if (password.type === "password") {
+        password.type = "text";
+        password.style.marginTop = "20px";
+        icon.style.color = "#7f2092";
+
       }else {
-        document.getElementById("password").setAttribute("type", "password");
-        state = true;
+        password.type = "password";
+        icon.style.color = "gery";
       }
     }
   </script>
