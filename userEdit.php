@@ -30,6 +30,7 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
+                        <img src="assets/images/<?php echo $user['profile'] ?>" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
                           <h4> <?php echo $user['username'] ?></h4>
                           <?php
@@ -48,9 +49,33 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card mb-3">
+                    <form class="" action="" method="post" enctype="multipart/form-data">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Choose Profile Image</h6>
+                          </div>
+                          <div class="col-sm-6 text-secondary">
+                            <input class="form-control" type="file" name="file" value="">
+                          </div>
+                          <div class="col-sm-3 text-secondary">
+                            <input class="btn btn-outline-secondary pull-right" type="submit" name="change" value="Change">
+                          </div>
+                        </div>
+                    </form>
+                    <?php
+                    if (isset($_POST['change'])) {
+                      $target = "assets/images/".basename($_FILES['file']['name']);
+                      $file = $_FILES['file']['name'];
+                      if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+                          DB::query('UPDATE users SET profile=:profile WHERE id=:id', array(':id'=>$user['id'],':profile'=>$file));
+                          echo "<script>window.open('Myprofile.php', '_self')</script>";
+                      }
+                    }
+                     ?>
+<hr>
                     <form class="" action="" method="post">
                       <div class="card-body">
-
                         <div class="row">
                           <div class="col-sm-3">
                             <h6 class="mb-0">Full Name</h6>

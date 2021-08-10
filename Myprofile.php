@@ -30,6 +30,7 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
+                        <img src="assets/images/<?php echo $user['profile'] ?>" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
                           <h4> <?php echo $user['username'] ?></h4>
                           <?php
