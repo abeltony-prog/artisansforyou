@@ -71,19 +71,22 @@
           ?>
         <div class="modal-body">
           <div class="row col-md-12">
-              <form align="center" class="starwidge" action="" method="post">
+            <div class="starwidge">
+              <form align="center" class="one" action="" method="post">
                 <input type="radio" name="rate" id="rate-5" value="5">
-                <label for="rate-5" class="fa fa-star fa-2x"></label>
+                <label style="margin-left:110px"></label>
+                <label style="margin-left:2px" for="rate-5" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-4" value="4">
-                <label for="rate-4" class="fa fa-star fa-2x"></label>
+                <label style="margin-left:2px" for="rate-4" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-3" value="3">
-                <label for="rate-3" class="fa fa-star fa-2x"></label>
+                <label style="margin-left:2px" for="rate-3" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-2" value="2">
-                <label for="rate-2" class="fa fa-star fa-2x"></label>
+                <label style="margin-left:2px" for="rate-2" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-1" value="1">
-                <label for="rate-1" class="fa fa-star fa-2x"></label><br>
-                <button class="btn btn-outline-primary" type="submit" name="save">confirm</button>
+                <label style="margin-left:2px" for="rate-1" class="fa fa-star fa-2x"></label><br><br>
+                <button class="btn btn-outline-primary" type="submit" name="save">Confirm</button>
               </form>
+            </div>
           </div>
         </div>
       </div>
@@ -109,11 +112,22 @@
                               }else {
                                 ?> ~ <span><img width="30" src="assets/rate/silver.png" alt=""> </span><?php
                               }
-                              $avarage =  $rates['star'] / 5 ;
-                            ?>  </h4>
-                            <span>Rating average: <?php echo $avarage ?></span>
+                            ?>
+                            </h4>
                             <?php
+                            if ($rates['star'] <= 0) {
+                              ?>
+                                <span>No rating yet</span>
+                              <?php
+                            }else {
+                              $avarage = $rates['star'] / $rates['people'];
+                              ?>
+
+                                <span>Rating average: <?php echo $avarage ?></span>
+                              <?php
+                            }
                           }
+
 
                             $categories = DB::query('SELECT * FROM categories WHERE id=:category', array(':category'=>$profile['category_id']));
                             foreach ($categories as $one) {
@@ -129,15 +143,21 @@
                                $uID = $profile['id'];
                                $ratedIndex = $_POST['rate'];
                                if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID))) {
-                                 DB::query('INSERT INTO rating VALUES(\'\', :artisan_id,:star)', array(':artisan_id'=>$uID,':star'=>$ratedIndex));
-                                 echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ". $profile['name']."</span><br><br>";
+                                   $person = 1;
+                                   DB::query('INSERT INTO rating VALUES(, :artisan_id,:star,:people)', array(':artisan_id'=>$uID,':star'=>$ratedIndex,':people'=>$person));
+                                   //echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ".$profile['name']."</span><br><br>";
+                                   echo "<script>alert('Thanks! for rating')</script>";
+                                   echo "<script>window.open('profile.php?artisan_id='.$uID.', '_self')</script>";
+
                                }else {
                                  $rates = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID));
                                  foreach ($rates as $key) {
+                                   $person = $key['people'] + 1;
                                    $rate1 = $key['star'];
                                    $rateSum = $key['star'] + $ratedIndex;
-                                   DB::query('UPDATE rating SET star=:ratings WHERE artisan_id=:artisanid', array('artisanid'=>$uID, ':ratings'=>$rateSum));
-                                   echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ".$profile['name']."</span><br><br>";
+                                   DB::query('UPDATE rating SET star=:ratings,people=:person WHERE artisan_id=:artisanid', array('artisanid'=>$uID, ':ratings'=>$rateSum , ':person'=>$person));
+                                   echo "<script>alert('Thanks! for rating')</script>";
+                                   echo "<script>window.open('profile.php?artisan_id='.$uID.', '_self')</script>";
                                  }
                                }
                              }
