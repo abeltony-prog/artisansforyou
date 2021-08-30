@@ -84,7 +84,7 @@
                 <label style="margin-left:2px" for="rate-2" class="fa fa-star fa-2x"></label>
                 <input type="radio" name="rate" id="rate-1" value="1">
                 <label style="margin-left:2px" for="rate-1" class="fa fa-star fa-2x"></label><br><br>
-                <button class="btn btn-outline-primary" type="submit" name="save">Confirm</button>
+                <button style="margin-left:2px"  class="btn btn-outline-primary" type="submit" name="save">Confirm</button>
               </form>
             </div>
           </div>
@@ -144,7 +144,7 @@
                                $ratedIndex = $_POST['rate'];
                                if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID))) {
                                    $person = 1;
-                                   DB::query('INSERT INTO rating VALUES(, :artisan_id,:star,:people)', array(':artisan_id'=>$uID,':star'=>$ratedIndex,':people'=>$person));
+                                   DB::query('INSERT INTO rating VALUES(\'\', :artisan_id,:star,:people)', array(':artisan_id'=>$uID,':star'=>$ratedIndex,':people'=>$person));
                                    //echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ".$profile['name']."</span><br><br>";
                                    echo "<script>alert('Thanks! for rating')</script>";
                                    echo "<script>window.open('profile.php?artisan_id='.$uID.', '_self')</script>";

@@ -4,7 +4,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="fontawesome/css/brands.css" rel="stylesheet">
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet">
+        <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="signinAssets/fonts/icomoon/style.css">
     <link rel="stylesheet" href="signinAssets/css/owl.carousel.min.css">
     <!-- Bootstrap CSS -->
@@ -17,6 +27,18 @@
     body{
       overflow-y: hidden;
     }
+      span{
+        position: absolute;
+        transform: translate(0,-50%);
+        margin-top: 60px;
+        left: 85%;
+        color: gray;
+        cursor: pointer;
+      }
+      .fa{
+        font-size: 20px;
+        color: #7a797e;
+      }
   </style>
   <body>
   <div class="d-lg-flex half">
@@ -58,7 +80,7 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="fname">Email address</label>
-                    <input type="email" name="email" class="form-control" placeholder="example@artisansforyou.com" id="fname">
+                    <input type="email" name="email" class="form-control" placeholder="example@artisansforyou.com" id="email">
                   </div>
                 </div>
               </div>
@@ -66,7 +88,8 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="fname">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password" id="fname">
+                    <span class="input-group-addon" aria-hidden="true" onclick="show()"><i class="fa fa-eye"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="Password" id="password">
                   </div>
                 </div>
               </div>
