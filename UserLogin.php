@@ -102,6 +102,22 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    function show() {
+      var password = document.getElementById('password');
+      var icon = document.querySelector('.fas');
+      if (password.type === "password") {
+        password.type = "text";
+        password.style.marginTop = "20px";
+        icon.style.color = "#7f2092";
+
+      }else {
+        password.type = "password";
+        icon.style.color = "gery";
+      }
+    }
+  </script>
+
     <script src="signinAssets/js/jquery-3.3.1.min.js"></script>
     <script src="signinAssets/js/popper.min.js"></script>
     <script src="signinAssets/js/bootstrap.min.js"></script>
