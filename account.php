@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Artisans For You | List</title>
+  <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
@@ -129,12 +130,13 @@
                                       <?php
                                       $ratingvalidation = DB::query('SELECT * FROM rating WHERE artisan_id=:artid', array(':artid'=>$all['id']));
                                       foreach ($ratingvalidation as $valid) {
-                                        if ($valid['star'] >= 80) {
-                                          echo "<img style='width:20px;height:20px' src='assets/rate/silver.png' alt=''>";
-                                        }elseif ($valid['star'] >=60) {
-                                          echo "<img style='width:20px;height:20px' src='assets/rate/gold.png' alt=''>";
-                                        }elseif ($valid['star'] >=50){
+                                        if ( 50 >= $valid['star']) {
+                                        }elseif (140 >=$valid['star']) {
                                           echo "<img style='width:20px;height:20px' src='assets/rate/bronze.png' alt=''>";
+                                        }elseif (300 >=$valid['star']){
+                                          echo "<img style='width:20px;height:20px' src='assets/rate/gold.png' alt=''>";
+                                        }else{
+                                          echo "<img style='width:20px;height:20px' src='assets/rate/silver.png' alt=''>";
                                         }
                                       }
                                        ?>

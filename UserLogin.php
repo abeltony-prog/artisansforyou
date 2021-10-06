@@ -80,7 +80,11 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="fname">Email address</label>
-                    <input type="email" name="email" class="form-control" placeholder="example@artisansforyou.com" id="email">
+                    <input type="email" name="email" class="form-control" placeholder="example@artisansforyou.com" id="email" value="<?php
+                        if (isset($_POST['email'])) {
+                          echo $_POST['email'];
+                        }
+                     ?>">
                   </div>
                 </div>
               </div>

@@ -6,21 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link href="fontawesome/css/all.css" rel="stylesheet">
-    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
-<link href="fontawesome/css/brands.css" rel="stylesheet">
-<link href="fontawesome/css/solid.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profile | Artisans For You</title>
+    <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
+
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
       rel="stylesheet">
       <link rel="icon" href="assets/icon/icon.png" type="image/x-icon">
-      <script src="jquery/jquery.barrating.min.js" charset="utf-8"></script>
-      <script src="jquery/jquery.barrating.js" charset="utf-8"></script>
-      <link rel="stylesheet" href="ratingstyle.css">
     <!-- google fonts -->
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -52,46 +46,29 @@
 </script>-->
 
 </head>
-
+<style>
+  .alert1{
+    background-color: #952;
+    color:#fff;
+    padding: 10px 0px 10px;
+    border-radius: 10px 0px 50px 0px;
+}
+.alert2{
+  border-right:solid 1px gray;
+  border-radius: 0px 0px 50px 0px;
+}
+.alert2 .fa{
+  color:brown;
+}
+</style>
 <body>
   <!--header-->
   <?php include('app_layout.php') ?>
   <!-- //header --><br> <br><br><br><br><br><br><br>
-  <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <?php
+  <?php
         $artisanprofile = DB::query('SELECT * FROM artisans WHERE id=:artisan_id', array(':artisan_id'=>$_GET['artisan_id']));
         foreach ($artisanprofile as $profile) {
           ?>
-        <div class="modal-body">
-          <div class="row col-md-12">
-            <div class="starwidge">
-              <form align="center" class="one" action="" method="post">
-                <input type="radio" name="rate" id="rate-5" value="5">
-                <label style="margin-left:110px"></label>
-                <label style="margin-left:2px" for="rate-5" class="fa fa-star fa-2x"></label>
-                <input type="radio" name="rate" id="rate-4" value="4">
-                <label style="margin-left:2px" for="rate-4" class="fa fa-star fa-2x"></label>
-                <input type="radio" name="rate" id="rate-3" value="3">
-                <label style="margin-left:2px" for="rate-3" class="fa fa-star fa-2x"></label>
-                <input type="radio" name="rate" id="rate-2" value="2">
-                <label style="margin-left:2px" for="rate-2" class="fa fa-star fa-2x"></label>
-                <input type="radio" name="rate" id="rate-1" value="1">
-                <label style="margin-left:2px" for="rate-1" class="fa fa-star fa-2x"></label><br><br>
-                <button style="margin-left:2px"  class="btn btn-outline-primary" type="submit" name="save">Confirm</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
     <div class="container">
         <div class="main-body">
               <div class="row gutters-sm">
@@ -101,29 +78,116 @@
                       <div class="d-flex flex-column align-items-center text-center">
                           <img src="assets/images/<?php echo $profile['profile'] ?>" alt="Admin" class="rounded-circle" width="150">
                           <div class="mt-3">
-                            <h4><?php echo $profile['name'];
+                            <h4 class="col-md-12"><?php echo $profile['name'];
                             $allrates = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$profile['id']));
                             foreach ($allrates as $rates) {
-                              if ( 50 >= $rates['star'] ) {
-                              }elseif ( 140 >= $rates['star']) {
-                                ?> ~ <span><img width="30" src="assets/rate/bronze.png" alt=""> </span><?php
-                              }elseif ( 300 >= $rates['star']) {
-                                ?> ~ <span><img width="30" src="assets/rate/gold.png" alt=""> </span><?php
-                              }else {
-                                ?> ~ <span><img width="30" src="assets/rate/silver.png" alt=""> </span><?php
-                              }
                             ?>
                             </h4>
                             <?php
                             if ($rates['star'] <= 0) {
                               ?>
-                                <span>No rating yet</span>
-                              <?php
+                                                          
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                              
                             }else {
                               $avarage = $rates['star'] / $rates['people'];
+                              $sub = substr($avarage , 0,3);
                               ?>
-
-                                <span>Rating average: <?php echo $avarage ?></span>
+                              <div class="row col-md-12">
+                              <div class="alert1 col-md-3">
+                                <b><?php echo $sub ?></b>
+                                </div>
+                              <div class="alert2 col-md-9">
+                                <?php 
+                                  if($sub <= 1){
+                                    ?>
+                              <span><i class="fa fa-star"></i> </span>
+                              <span><i class="fa fa-star-o"></i> </span>
+                              <span><i class="fa fa-star-o"></i> </span>
+                              <span><i class="fa fa-star-o"></i> </span>
+                              <span><i class="fa fa-star-o"></i> </span>
+                                    <?php
+                                  }elseif($sub <= 1.5){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-half"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }elseif($sub <= 2){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }elseif($sub <= 2.5){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-half"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }elseif($sub <= 3){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }elseif($sub <= 3.5){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-half"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }elseif($sub <= 4){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }elseif($sub <= 4.5){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star-half"></i> </span>
+                                          <?php
+                                  }elseif($sub <=5){
+                                    ?>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                    <span><i class="fa fa-star"></i> </span>
+                                          <?php
+                                  }else{
+                                    ?>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                    <span><i class="fa fa-star-o"></i> </span>
+                                          <?php
+                                  }
+                                 ?>
+                              </div>
+                              </div>
                               <?php
                             }
                           }
@@ -138,32 +202,8 @@
                             <?php
                             }
                              ?>
-                             <?php
-                              if (isset($_POST['save'])) {
-                               $uID = $profile['id'];
-                               $ratedIndex = $_POST['rate'];
-                               if (!DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID))) {
-                                   $person = 1;
-                                   DB::query('INSERT INTO rating VALUES(\'\', :artisan_id,:star,:people)', array(':artisan_id'=>$uID,':star'=>$ratedIndex,':people'=>$person));
-                                   //echo "<br><span class='col-md-12 col-sm-12 alert alert-success'>Thanks! for rating ".$profile['name']."</span><br><br>";
-                                   echo "<script>alert('Thanks! for rating')</script>";
-                                   echo "<script>window.open('profile.php?artisan_id='.$uID.', '_self')</script>";
-
-                               }else {
-                                 $rates = DB::query('SELECT * FROM rating WHERE artisan_id=:artisanid', array(':artisanid'=>$uID));
-                                 foreach ($rates as $key) {
-                                   $person = $key['people'] + 1;
-                                   $rate1 = $key['star'];
-                                   $rateSum = $key['star'] + $ratedIndex;
-                                   DB::query('UPDATE rating SET star=:ratings,people=:person WHERE artisan_id=:artisanid', array('artisanid'=>$uID, ':ratings'=>$rateSum , ':person'=>$person));
-                                   echo "<script>alert('Thanks! for rating')</script>";
-                                   echo "<script>window.open('profile.php?artisan_id='.$uID.', '_self')</script>";
-                                 }
-                               }
-                             }
-                              ?>
                              <form class="" action="" method="post">
-                              <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#rateModal" href="#"><span><i class="fa fa-star-o"></i> Rate</span></a>
+                              <a class="btn btn-outline-secondary" href="rate.php?artisanid=<?php echo $_GET['artisan_id']?>"><span><i class="fa fa-star-o"></i> Rate</span></a>
                                <a class="btn btn-outline-primary" data-toggle="modal" data-target="#chatModal" href="#"><i class="fa fa-send"></i> Message</a>
 
                                <?php
@@ -315,7 +355,6 @@
                                   <?php
                                 }
                                  ?>
-        <script defer src="fontawesome/js/all.js"></script> <!--load all styles -->
         <script src="assets/js/jquery-3.3.1.min.js"></script>
         <script src="assets/js/theme-change.js"></script>
         <!-- stats number counter-->
